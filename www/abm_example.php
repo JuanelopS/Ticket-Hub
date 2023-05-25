@@ -1,14 +1,14 @@
 <?php
 
-require_once('usuarios_model.php');
+require_once('./models/users_model.php');
 
-# Traer los datos de un usuario
-$usuario1 = new Usuario();
-$usuario1->get('user@email.com');
-print $usuario1->nombre . ' ' . $usuario1->apellido . ' existe<br>';
+# Traer los dat.os de un usuario
+$user1 = new User();
+$user1->get('admin@admin.com');
+print $user1->name . ' ' . $user1->surname . ' existe<br>';
 
 
-# Crear un nuevo usuario
+/* # Crear un nuevo usuario
 $new_user_data = array(
     'nombre' => 'Alberto',
     'apellido' => 'Jacinto',
@@ -38,4 +38,4 @@ print $usuario3->nombre . ' ' . $usuario3->apellido . ' ha sido editado<br>';
 $usuario4 = new Usuario();
 $usuario4->get('lei@mail.com');
 $usuario4->delete('lei@mail.com');
-print $usuario4->nombre . ' ' . $usuario4->apellido . ' ha sido eliminado';
+print $usuario4->nombre . ' ' . $usuario4->apellido . ' ha sido eliminado'; */

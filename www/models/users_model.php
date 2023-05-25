@@ -2,17 +2,19 @@
 
 require_once 'db_abstract_model.php';
 
-class Usuario extends DBAbstractModel
+class User extends DBAbstractModel
 {
-    public $nombre;
-    public $apellido;
+    protected $id_user;
     public $email;
-    private $clave;
-    protected $id;
+    public $name;
+    public $surname;
+    protected $register_date;
+    protected $id_rol;
+    private $password;
 
     public function __construct()
     {
-        $this->db_name = 'book_example';
+        $this->table_name = 'users';
     }
 
     public function get($user_email = '')
@@ -20,11 +22,9 @@ class Usuario extends DBAbstractModel
         if ($user_email != '') {
             $this->query = "
                             SELECT
-                            id, nombre, apellido, email, clave
+                            *
                             FROM
-                            usuarios
-                            WHERE
-                            email = '$user_email'
+                            $this->table_name
                             ";
             $this->get_results_from_query();
         }

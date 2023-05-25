@@ -2,43 +2,35 @@
 
 abstract class DBAbstractModel
 {
-    private static $db_host = 'localhost';
-    private static $db_user = 'usuario';
-    private static $db_pass = 'contraseña';
-    protected $db_name = 'mydb';
+    private static $db_host = 'mysql';
+    private static $db_name = 'dbname';
+    private static $db_user = 'root';
+    private static $db_pass = 'test';
+    protected $table_name;
     protected $query;
     protected $rows = array();
     private $conn;
 
-    # métodos abstractos para ABM de clases que hereden
+    # Abstract methods
     abstract protected function get();
     abstract protected function set();
     abstract protected function edit();
     abstract protected function delete();
 
-
-    # los siguientes métodos pueden definirse con exactitud
-    # y no son abstractos
-    # Conectar a la base de datos
+    # Database connection
     private function open_connection()
     {
-        $this->conn = new mysqli(
-            self::$db_host,
-            self::$db_user,
-            self::$db_pass,
-            $this->db_name
-        );
+        self::$conn =
+        new PDO("mysql:host=" . self::$db_host . ";dbname=" . self::$db_name . ";charset=utf8", self::$db_user, self::$db_pass);
     }
 
-
-    # Desconectar la base de datos
+    # Database close connection
     private function close_connection()
     {
-        $this->conn->close();
+        self::$conn = null;
     }
 
-
-    # Ejecutar un query simple del tipo INSERT, DELETE, UPDATE
+    # Database queries INSERT, DELETE, UPDATE
     protected function execute_single_query()
     {
         $this->open_connection();
@@ -46,8 +38,7 @@ abstract class DBAbstractModel
         $this->close_connection();
     }
 
-
-    # Traer resultados de una consulta en un Array
+    # Database query SELECT (array)
     protected function get_results_from_query()
     {
         $this->open_connection();
