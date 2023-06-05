@@ -39,10 +39,10 @@ class User extends Database
         return $result;
     }
 
-    public static function get_by_id($id)
+    public static function get_by_id($data)
     {
-        parent::$query = "SELECT * FROM users WHERE id_user = :id";
-        $result = parent::get_results_from_query($id);
+        parent::$query = "SELECT * FROM users WHERE id_user = ?";
+        $result = parent::get_results_from_query([$data]);
         return $result;
     }
 

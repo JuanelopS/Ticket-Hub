@@ -44,8 +44,7 @@ abstract class Database
         try {
             self::open_connection();
             self::$stmt = self::$connection->prepare(self::$query);
-            self::$stmt->bindParam(':id', $data);
-            self::$stmt->execute();
+            self::$stmt->execute($data);
             return self::$stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -60,7 +59,7 @@ abstract class Database
      * @param array $data
      * @return void
      */
-    public static function execute_query($data = '')
+    public static function execute_query($data = "")
     {
         try {
             self::open_connection();

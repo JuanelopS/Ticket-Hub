@@ -15,9 +15,9 @@ echo "</pre>";
 
 // print_r(User::get_by_id(1));
 
-$data = User::get_all();
+$data = User::get_by_id(5);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
 
 
 
