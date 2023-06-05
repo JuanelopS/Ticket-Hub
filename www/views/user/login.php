@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +7,9 @@
     <title>Login</title>
 </head>
 <body>
-    <h3><?= $msg ?></h3>
+    <?php
+        echo $msg ? $msg : "";
+    ?>
     <form action="" method="POST">
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>
