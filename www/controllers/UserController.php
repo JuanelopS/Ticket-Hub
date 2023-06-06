@@ -13,11 +13,14 @@ echo "</pre>";
 
 /* User::delete(2); */
 
-// print_r(User::get_by_id(1));
+// print_r(User::get_by_id(1)); ºº
 
-$data = User::get_by_id(5);
+function user_list(){
+    $data = User::get_all();
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+}
+
 
 
 
