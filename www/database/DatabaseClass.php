@@ -39,7 +39,7 @@ abstract class Database
      * @param  $data
      * @return array
      */
-    public static function get_results_from_query($data = [])
+    public static function get_results_from_query($data = array())
     {
         try {
             self::open_connection();

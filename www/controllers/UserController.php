@@ -25,4 +25,9 @@ class UserController
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
 
     }
+
+    function profile() {
+
+        
+    }
 }
