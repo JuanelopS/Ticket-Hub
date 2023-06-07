@@ -15,13 +15,14 @@ echo "</pre>";
 
 // print_r(User::get_by_id(1)); ºº
 
-function user_list(){
-    $data = User::get_all();
+class UserController
+{
 
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+    function list()
+    {
+        $data = User::get_all();
+        
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+
+    }
 }
-
-
-
-
-

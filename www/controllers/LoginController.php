@@ -5,45 +5,45 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
 $msg = "";
 
-function login(){
+class LoginController
+{
 
-    if ($_POST != null) {
+    public function login()
+    {
 
-        $email_login = $_POST['email'];
-        $password_login = $_POST['password'];
-        $_POST = array();
-        $login = new Login($email_login, $password_login);
-        $result = $login->login();
-        
-        /* if query returns 0 (no rows) -> login incorrect */
+        if ($_POST != null) {
 
-        if (count($result)) {
-            $login->setMessage("Login successfully");
-            $msg = $login->getMessage();
+            $email_login = $_POST['email'];
+            $password_login = $_POST['password'];
+            $_POST = array();
+            $login = new Login($email_login, $password_login);
+            $result = $login->login();
 
-            /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
-            $result = $result[0];
+            /* if query returns 0 (no rows) -> login incorrect */
 
-            Session::open_session($result);
+            if (count($result)) {
+                $login->setMessage("Login successfully");
+                $msg = $login->getMessage();
 
-            require_once $_SERVER['DOCUMENT_ROOT'] . "/index.php";
+                /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
+                $result = $result[0];
+
+                Session::open_session($result);
+
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/index.php";
+            } else {
+                $login->setMessage("Login incorrect");
+                $msg = $login->getMessage();
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
+            }
         } else {
-            $login->setMessage("Login incorrect");
-            $msg = $login->getMessage();
+            $msg = "";
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
         }
-    } else {
-        $msg = "";
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
     }
 
+    public function logout()
+    {
+        Session::close_session();
+    }
 }
-
-function logout(){
-    Session::close_session();
-}
-
-
-
-
-

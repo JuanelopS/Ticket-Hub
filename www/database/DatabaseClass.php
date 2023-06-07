@@ -44,7 +44,7 @@ abstract class Database
         try {
             self::open_connection();
             self::$stmt = self::$connection->prepare(self::$query);
-            self::$stmt->execute($data);
+            self::$stmt->execute();
             return self::$stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

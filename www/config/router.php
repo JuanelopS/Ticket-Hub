@@ -11,12 +11,12 @@ class Router{
     public function matchRoute() {
         $url = explode('/', URL);
         
-        $this->controller = $url[1];
-        $this->method = $url[2];
+        $this->controller = !empty($url[1]) ? ucfirst($url[1]) : "Page";
+        $this->method = !empty($url[2]) ? $url[2] : "_404";
 
-        $this->controller = $this->controller . 'Controller';
+        $this->controller = $this->controller . "Controller";
 
-        require_once __DIR__ . '/controllers/'. $this->controller . '.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/controllers/'. $this->controller . '.php';
     }
 
     public function run() {
