@@ -39,12 +39,12 @@ abstract class Database
      * @param  $data
      * @return array
      */
-    public static function get_results_from_query($data = "")
+    public static function get_results_from_query($data = [])
     {
         try {
             self::open_connection();
             self::$stmt = self::$connection->prepare(self::$query);
-            self::$stmt->execute();
+            self::$stmt->execute($data);
             return self::$stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

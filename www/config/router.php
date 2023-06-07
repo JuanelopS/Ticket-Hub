@@ -9,6 +9,7 @@ class Router{
     }
 
     public function matchRoute() {
+        
         $url = explode('/', URL);
         
         $this->controller = !empty($url[1]) ? ucfirst($url[1]) : "Page";
