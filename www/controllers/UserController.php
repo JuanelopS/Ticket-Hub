@@ -28,6 +28,6 @@ class UserController
 
     function profile() {
 
-        
+        echo "profile page";
     }
 }
