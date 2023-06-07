@@ -8,9 +8,9 @@
 </head>
 <body>
     <?php
-        echo $msg ? $msg : "";
+        echo $msg;
     ?>
-    <form action="" method="POST">
+    <form action="/login/check_login" method="POST">
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>
         <label for="password">Password</label>

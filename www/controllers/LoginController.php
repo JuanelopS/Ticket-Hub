@@ -3,12 +3,21 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/LoginModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
-$msg = "";
+
 
 class LoginController
 {
+    
 
+    
     public function login()
+    {
+        $msg = "";
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
+    }
+
+
+    public function check_login()
     {
 
         if ($_POST != null) {
@@ -34,7 +43,7 @@ class LoginController
             } else {
                 $login->setMessage("Login incorrect");
                 $msg = $login->getMessage();
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/login/login";
             }
         } else {
             $msg = "";
@@ -42,8 +51,9 @@ class LoginController
         }
     }
 
-    public function logout()
+    public function user_logout()
     {
         Session::close_session();
+        header('Location: /page/home');
     }
 }
