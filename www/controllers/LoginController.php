@@ -32,7 +32,8 @@ class LoginController
                 /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
                 $result = $result[0];
                 Session::open_session($result);
-                
+                /* FIXME: IMPLEMENTS base_url function here */
+                header("Location: ../page/home");
                 
 
                 /* Login incorrect */
@@ -44,6 +45,9 @@ class LoginController
     }
     public function logout()
     {
+        
         Session::close_session();
+        /* FIXME: IMPLEMENTS base_url function here */
+        header("Location: ../page/home");
     }
 }
