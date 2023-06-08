@@ -7,19 +7,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
 class LoginController
 {
-    
 
-    
-    public function login()
+    public function view()
     {
         $msg = "";
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
     }
 
 
-    public function check_login()
+    public function check()
     {
-
         if ($_POST != null) {
 
             $email_login = $_POST['email'];
@@ -28,32 +25,25 @@ class LoginController
             $login = new Login($email_login, $password_login);
             $result = $login->login();
 
-            /* if query returns 0 (no rows) -> login incorrect */
 
+            /* Login correct */
             if (count($result)) {
-                $login->setMessage("Login successfully");
-                $msg = $login->getMessage();
-
+                
                 /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
                 $result = $result[0];
-
                 Session::open_session($result);
+                
+                
 
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/index.php";
+                /* Login incorrect */
             } else {
-                $login->setMessage("Login incorrect");
-                $msg = $login->getMessage();
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/login/login";
+                $msg = "Login incorrect";
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/login.php';
             }
-        } else {
-            $msg = "";
-            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
         }
     }
-
-    public function user_logout()
+    public function logout()
     {
         Session::close_session();
-        header('Location: /page/home');
     }
 }

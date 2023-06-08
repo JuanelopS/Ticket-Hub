@@ -6,7 +6,7 @@ class Session {
 
     public static function open_session(array $data){
         session_start();
-        // self::$session_status = true;
+        self::$session_status = true;
         foreach($data as $key => $value) {
             $_SESSION[$key] = $value;
         }
@@ -14,6 +14,7 @@ class Session {
 
     public static function close_session(){
         session_destroy();
-        // self::$session_status = false;
+        
+        self::$session_status = false;
     }
 }
