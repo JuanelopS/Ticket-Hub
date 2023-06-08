@@ -9,3 +9,6 @@ define("DB_PASSWORD", "test");
 /* Router */
 
 define('URL', $_SERVER['REQUEST_URI']);
+
+
+

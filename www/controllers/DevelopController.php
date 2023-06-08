@@ -6,11 +6,15 @@ class DevelopController {
 
     }
 
-    public function aa(){
+    public function server(){
 
         echo "<pre>";
         print_r($_SERVER);
         echo "</pre>";
+    }
+
+    public function index(){
+        
     }
 
 }

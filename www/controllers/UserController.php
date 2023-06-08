@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
 // $user = new User('test6@est.com', '111111111114r8h', 'testname6', 'testsurname6');
 
@@ -20,10 +22,14 @@ class UserController
 
     function list()
     {
-        $data = User::get_all();
+        /* TODO: implements global function for permissions */
+        if(isset($_SESSION['id_rol']) == 1){
+            $data = User::get_all();
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+        } else {
+            echo "Action not allowed";
+        }
         
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
-
     }
 
     function profile() {
