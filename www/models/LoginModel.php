@@ -28,4 +28,5 @@ class Login extends User
         $data = [$this->email_login, $this->password_login];
         return parent::get_results_from_query($data);
     }
+    
 }

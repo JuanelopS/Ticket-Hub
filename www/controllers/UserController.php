@@ -36,4 +36,9 @@ class UserController
 
         echo "profile page";
     }
+
+    function register() {
+
+        
+    }
 }
