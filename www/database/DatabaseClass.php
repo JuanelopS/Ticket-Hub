@@ -65,10 +65,10 @@ abstract class Database
             self::open_connection();
             self::$stmt = self::$connection->prepare(self::$query);
             self::$stmt->execute($data);
-            print self::$connection->lastInsertId();
+            // print self::$connection->lastInsertId();
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage() . "<br>";
-            echo "<b>ERROR</b>";
+            echo "<p style='color:red'>Error: " . $e->getMessage() . "</p><br>";
+            var_dump(self::$stmt);
         } finally {
             self::close_connection();
         }

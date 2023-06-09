@@ -36,11 +36,11 @@ class UserController
         echo "profile page";
     }
 
-    function register_view(){
+    function register(){
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/register.php';
     }
 
-    function register(){
+    function exec_register(){
         if($_POST != null){
             // var_dump($_POST);
             $email = $_POST['email'];

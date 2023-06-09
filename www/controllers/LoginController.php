@@ -11,6 +11,7 @@ class LoginController
     public function view()
     {
         $msg = "";
+        /* TODO: DONT SHOW IF USER IS LOGGED */
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
     }
 
@@ -45,7 +46,6 @@ class LoginController
     }
     public function logout()
     {
-        
         Session::close_session();
         /* FIXME: IMPLEMENTS base_url function here */
         header("Location: ../page/home");
