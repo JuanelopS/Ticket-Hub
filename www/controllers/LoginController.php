@@ -3,6 +3,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/LoginModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
+
+
 class LoginController
 {
 
@@ -43,6 +45,7 @@ class LoginController
     }
     public function logout()
     {
+        
         Session::close_session();
         /* FIXME: IMPLEMENTS base_url function here */
         header("Location: ../page/home");

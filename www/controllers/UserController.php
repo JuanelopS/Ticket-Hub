@@ -29,16 +29,28 @@ class UserController
         } else {
             echo "Action not allowed";
         }
-        
     }
 
     function profile() {
-
+        /* TODO: ADD PARAMS TO ROUTE FUNCTION */
         echo "profile page";
     }
 
-    function register() {
+    function register_view(){
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/register.php';
+    }
 
-        
+    function register(){
+        if($_POST != null){
+            // var_dump($_POST);
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $name= $_POST['name'];
+            $surname = $_POST['surname'];
+
+            $user = new User($email, $password, $name, $surname);
+            $user->insert();
+            
+        }
     }
 }

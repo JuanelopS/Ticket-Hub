@@ -10,7 +10,7 @@
 
 <body>
     <h2>Register</h2>
-    <form action="/register" method="POST">
+    <form action="/user/register" method="POST">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required>
         <label for="password">Password</label>

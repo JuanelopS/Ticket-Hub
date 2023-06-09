@@ -12,6 +12,8 @@ class PageController {
         } else {
             echo "Welcome guest <br>";
             echo "<a href='/login/view'>Login</a>";
+            echo "<br>";
+            echo "<a href='/user/register_view'>Register</a>";
         }
     }
 
