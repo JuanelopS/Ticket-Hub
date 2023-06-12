@@ -11,4 +11,9 @@ define("DB_PASSWORD", "test");
 define('URL', $_SERVER['REQUEST_URI']);
 
 
+/* Hash */
+
+define("PEPPER", "KS92L{¡kdsxjal'1sjooewsW");
+
+
 

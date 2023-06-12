@@ -23,7 +23,9 @@ class UserController
     function list()
     {
         /* TODO: implements global function for permissions */
-        if(isset($_SESSION['id_rol']) == 1){
+        /* FIXME: no string comparation for permissions */
+        var_dump($_SESSION);
+        if($_SESSION['id_rol'] === '1'){
             $data = User::get_all();
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
         } else {
@@ -42,14 +44,21 @@ class UserController
 
     function exec_register(){
         if($_POST != null){
-            // var_dump($_POST);
+
             $email = $_POST['email'];
             $password = $_POST['password'];
             $name= $_POST['name'];
             $surname = $_POST['surname'];
 
+            $password_peppered = hash_hmac("sha256", $password, PEPPER);
+            $password_hashed = password_hash($password_peppered, PASSWORD_DEFAULT);
+            $password = $password_hashed;
+
             $user = new User($email, $password, $name, $surname);
             $user->insert();
+
+            /* TODO: REDIRECT AFTER REGISTER USER LESS BASIC... */
+            header("Location: /");
             
         }
     }

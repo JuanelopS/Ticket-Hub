@@ -10,6 +10,7 @@
 
 <body>
     <h2>Register</h2>
+    <!-- TODO: set max/min characters in form -->
     <form action="/user/exec_register" method="POST">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required>
