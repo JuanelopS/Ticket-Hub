@@ -37,8 +37,7 @@ class LoginController
             /* Login correct */
             if ($result['verify_password']) {
 
-                /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
-                Session::open_session($result['user_data'][0]);
+                Session::open_session(array_merge(...$result['user_data']));
 
                 /* TODO: IMPLEMENTS SOMETHING LESS BASIC */
                 header("Location: /");

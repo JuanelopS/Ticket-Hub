@@ -57,7 +57,7 @@ class Login extends User
         parent::$query = "SELECT password FROM users WHERE email = ?";
         $result = parent::get_results_from_query([$email]);
         if($result) {
-            return $result[0];
+            return array_merge(...$result);
         }
         
     }

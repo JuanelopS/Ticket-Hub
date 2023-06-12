@@ -7,6 +7,21 @@ class DevelopController
     {
     }
 
+    public function aa(){
+        $data = [[
+            'name' => 'Juan',
+            'surname' => 'Gavira',
+            'age' => 40,
+            'data' => [1, 2, 3, 4, 5]
+        ]];
+
+        $flat_array = array_merge(...$data);
+
+        var_dump($flat_array);
+    }
+
+
+
     public function password_hash_cost()
     {
 
