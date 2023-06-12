@@ -28,8 +28,7 @@ class LoginController
             $password_peppered = hash_hmac("sha256", $password_login, PEPPER);
             $password_hashed = $login->get_user_pwd($email_login);
 
-            if($password_hashed) {
-
+            if ($password_hashed) {
                 $result = $login->login($password_peppered, $password_hashed['password']);
             } else {
                 exit("User not exists");
@@ -37,13 +36,13 @@ class LoginController
 
             /* Login correct */
             if ($result['verify_password']) {
- 
+
                 /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
                 Session::open_session($result['user_data'][0]);
 
                 /* TODO: IMPLEMENTS SOMETHING LESS BASIC */
                 header("Location: /");
-                
+
                 /* Login incorrect */
             } else {
                 $login_incorrect_message = "Email and/or password incorrect";
@@ -60,4 +59,3 @@ class LoginController
         header("Location: /");
     }
 }
-
