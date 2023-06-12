@@ -4,7 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/LoginModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
 
-
 class LoginController
 {
 
@@ -23,22 +22,24 @@ class LoginController
             $email_login = $_POST['email'];
             $password_login = $_POST['password'];
 
-            $password_peppered = hash_hmac("sha256", $password_login, PEPPER);
-            $password_hashed = password_hash($password_peppered, PASSWORD_DEFAULT);
-
-            $password_login = $password_hashed;
-
             $_POST = array();
             $login = new Login($email_login, $password_login);
-            $result = $login->login();
 
-            echo $password_login;
+            $password_peppered = hash_hmac("sha256", $password_login, PEPPER);
+            $password_hashed = $login->get_user_pwd($email_login);
+
+            if($password_hashed) {
+
+                $result = $login->login($password_peppered, $password_hashed['password']);
+            } else {
+                exit("User not exists");
+            }
+
             /* Login correct */
-            if (count($result)) {
-                
+            if ($result['verify_password']) {
+ 
                 /* FIXME: FIX WHY RETURN MULTIDIMENSIONAL ARRAY... */
-                $result = $result[0];
-                Session::open_session($result);
+                Session::open_session($result['user_data'][0]);
 
                 /* TODO: IMPLEMENTS SOMETHING LESS BASIC */
                 header("Location: /");

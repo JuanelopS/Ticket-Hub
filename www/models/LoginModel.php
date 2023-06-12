@@ -22,11 +22,31 @@ class Login extends User
         return $this->msg;
     }
 
-    public function login()
+    public function login($pwd_peppered, $pwd_hashed)
     {
-        parent::$query = "SELECT * FROM users WHERE email = ? AND password = ?";
-        $data = [$this->email_login, $this->password_login];
-        return parent::get_results_from_query($data);
+        parent::$query = "SELECT * FROM users WHERE email = ?";
+        $data = [$this->email_login];
+        $user_data = parent::get_results_from_query($data);
+
+        if($user_data !== array()){
+
+            $result = [
+                'verify_password' => password_verify($pwd_peppered, $pwd_hashed),
+                'user_data' => $user_data
+            ];
+
+            return $result;
+        } 
     }
-    
+
+    public function get_user_pwd($email)
+    {
+        parent::$query = "SELECT password FROM users WHERE email = ?";
+        $result = parent::get_results_from_query([$email]);
+        if($result) {
+            return $result[0];
+        }
+        
+    }
+
 }
