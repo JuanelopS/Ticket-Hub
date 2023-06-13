@@ -7,11 +7,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 class LoginController
 {
 
-    public function view()
+    public function view($message = "")
     {
-        $msg = "";
+        $login_message = $message;
         /* TODO: DONT SHOW IF USER IS LOGGED */
+        require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
+        require_once FOOTER;
     }
 
 
@@ -44,8 +46,8 @@ class LoginController
 
                 /* Login incorrect */
             } else {
-                $login_incorrect_message = "Email and/or password incorrect";
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/login.php';
+                $message = "Email and/or password incorrect";
+                $this->view($message);
             }
         } else {
             exit('Please fill both the email and password fields!');

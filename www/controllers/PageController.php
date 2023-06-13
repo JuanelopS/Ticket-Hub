@@ -4,6 +4,7 @@ class PageController {
 
     public function home(){
         session_start();
+        require_once HEADER;
         if(array_key_exists('name', $_SESSION)){
             
             echo "Welcome " . ucfirst($_SESSION['name']) . "<br>"; 
@@ -15,6 +16,7 @@ class PageController {
             echo "<br>";
             echo "<a href='/user/register'>Register</a>";
         }
+        require_once FOOTER;
     }
 
     public function _404(){

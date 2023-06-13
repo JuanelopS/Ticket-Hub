@@ -16,4 +16,10 @@ define('URL', $_SERVER['REQUEST_URI']);
 define("PEPPER", "KS92L{¡kdsxjal'1sjooewsW");
 
 
+/* Layout */
+
+define("HEADER", $_SERVER['DOCUMENT_ROOT'] . "/views/layout/header.php");
+define("FOOTER", $_SERVER['DOCUMENT_ROOT'] . "/views/layout/footer.php");
+
+
 

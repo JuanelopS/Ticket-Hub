@@ -4,33 +4,21 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
-// $user = new User('test6@est.com', '111111111114r8h', 'testname6', 'testsurname6');
-
-/* echo "<pre>";
-print_r($user->get_all());
-echo "</pre>";
- */
-
-/* $user->insert(); */
-
-/* User::delete(2); */
-
-// print_r(User::get_by_id(1)); ºº
-
 class UserController
 {
 
     function list()
     {
+        require_once HEADER;
         /* TODO: implements global function for permissions */
         /* FIXME: no string comparation for permissions */
-        var_dump($_SESSION);
         if($_SESSION['id_rol'] === '1'){
             $data = User::get_all();
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
         } else {
             echo "Action not allowed";
         }
+        require_once FOOTER;
     }
 
     function profile() {
@@ -39,7 +27,9 @@ class UserController
     }
 
     function register(){
+        require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/register.php';
+        require_once FOOTER;
     }
 
     function exec_register(){

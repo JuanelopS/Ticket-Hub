@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-
-<body>
     <h2>Register</h2>
     <!-- TODO: set max/min characters in form -->
     <form action="/user/exec_register" method="POST">
@@ -22,6 +11,3 @@
         <input type="text" name="surname" id="surname" required>
         <input type="submit" value="Register">
     </form>
-</body>
-
-</html>
