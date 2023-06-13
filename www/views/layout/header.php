@@ -19,6 +19,9 @@
 </head>
 
 <body>
-    <div>
-        <h2>HEADER</h2>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="column column-50 column-offset-25">
+                <h2>HEADER</h2>
+            </div>
+        </div>
