@@ -23,7 +23,10 @@ class UserController
 
     function profile() {
         /* TODO: ADD PARAMS TO ROUTE FUNCTION */
-        echo "profile page";
+        require_once HEADER;
+        echo "profile page<br>";
+        var_dump($_SESSION);
+        require_once FOOTER;
     }
 
     function register(){
