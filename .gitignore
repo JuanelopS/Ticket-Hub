@@ -1,2 +1,2 @@
-/config/constants.php
-/www/node_modules
+node_modules
+/www/config/constants.php
