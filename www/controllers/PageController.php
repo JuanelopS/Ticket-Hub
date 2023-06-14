@@ -1,21 +1,12 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/constants.php';
 class PageController {
 
     public function home(){
         session_start();
         require_once HEADER;
-        if(array_key_exists('name', $_SESSION)){
-            
-            echo "Welcome " . ucfirst($_SESSION['name']) . "<br>"; 
-            echo "<a href='/login/logout'>Logout</a>";
-
-        } else {
-            echo "Welcome guest <br>";
-            echo "<a href='/login/view'>Login</a>";
-            echo "<br>";
-            echo "<a href='/user/register'>Register</a>";
-        }
+        require_once HOME;
         require_once FOOTER;
     }
 
