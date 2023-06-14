@@ -2,6 +2,7 @@
     height: 10rem;
     display: flex;
 }
+
 .logo{
     display:flex;
     align-items: center;
@@ -26,4 +27,17 @@
   height: 4.5rem;
   line-height: 4.5rem;
   padding: 0 2rem;
+}
+
+.feather {
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.feather-x-octagon {
+  color: red;
+}
+
+.feather-edit {
+  color: #9b4dca;
 }

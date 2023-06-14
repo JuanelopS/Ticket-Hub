@@ -12,9 +12,11 @@ class UserController
         require_once HEADER;
         /* TODO: implements global function for permissions */
         /* FIXME: no string comparation for permissions */
-        if($_SESSION['id_rol'] === '1'){
+        if($_SESSION['id_rol'] === 1){
             $data = User::get_all();
+            require_once HEADER;
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+            require_once FOOTER;
         } else {
             echo "Action not allowed";
         }

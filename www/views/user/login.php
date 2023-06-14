@@ -4,7 +4,7 @@
     <div class="column column-50 column-offset-25">
         <h2>Login</h2>
         <form action="/login/check" method="POST">
-            <label for="email">Email:</label>
+            <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
