@@ -16,7 +16,7 @@
             foreach ($data as $value) {
                 $date = date_format(date_create($value['register_date']), 'd/m/Y H:i:s');
                 echo "<tr>";
-                echo "<td><i class='btn_delete " . $value['id_user'] . "' data-feather='x-octagon'></i><i class='btn_update " . $value['id_user'] . "' data-feather='edit'></i></td>";
+                echo "<td><i del='" . $value['id_user'] .  "' class='btn_delete data-feather='x-octagon'></i><i upd='upd='" . $value['id_user'] .  "'' class='btn_update' data-feather='edit'></i></td>";
                 echo "<td>" . $value['id_user'] . "</td>";
                 echo "<td>" . $value['email'] . "</td>";
                 echo "<td>" . $value['name'] . "</td>";
