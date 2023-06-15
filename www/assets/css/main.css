@@ -29,6 +29,10 @@
   padding: 0 2rem;
 }
 
+th {
+  font-weight: bold;
+}
+
 .feather {
   cursor: pointer;
   margin-left: 6px;
