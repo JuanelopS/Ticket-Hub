@@ -3,6 +3,7 @@
 class Router{
     private $controller;
     private $method;
+    private $param;
 
     public function __construct() {
         $this->matchRoute();
@@ -17,10 +18,9 @@ class Router{
         
         $url = explode('/', URL);
         
-        /* TODO: PARAMS FOR ROUTER */
-
         $this->controller = !empty($url[1]) ? ucfirst($url[1]) : "Page";
         $this->method = !empty($url[2]) ? $url[2] : "home";
+        $this->param = !empty($url[3]) ? $url[3] : null;
 
         $this->controller = $this->controller . "Controller";
 
@@ -45,6 +45,7 @@ class Router{
     public function run() {
         $controller = new $this->controller();
         $method = $this->method;
-        $controller->$method();
+        $param = $this->param;
+        $controller->$method($param);
     }
 }

@@ -26,6 +26,7 @@ abstract class Database
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+
     }
 
     protected static function close_connection()
@@ -73,4 +74,5 @@ abstract class Database
             self::close_connection();
         }
     }
+
 }

@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 class UserController
 {
 
-    function list()
+    public function list()
     {
         require_once HEADER;
         /* TODO: implements global function for permissions */
@@ -23,7 +23,7 @@ class UserController
         require_once FOOTER;
     }
 
-    function profile() {
+    public function profile() {
         /* TODO: ADD PARAMS TO ROUTE FUNCTION */
         require_once HEADER;
         echo "profile page<br>";
@@ -31,7 +31,7 @@ class UserController
         require_once FOOTER;
     }
 
-    function register(){
+    public function register(){
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/user/register.php';
         require_once FOOTER;
@@ -56,5 +56,9 @@ class UserController
             header("Location: /");
             
         }
+    }
+
+    public function delete($id){
+        echo $id;
     }
 }
