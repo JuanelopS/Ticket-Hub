@@ -18,6 +18,8 @@ class Router{
         
         $url = explode('/', URL);
         
+        /* TODO: REVIEW PARAMS IN REQUEST_URI */
+
         $this->controller = !empty($url[1]) ? ucfirst($url[1]) : "Page";
         $this->method = !empty($url[2]) ? $url[2] : "home";
         $this->param = !empty($url[3]) ? $url[3] : null;

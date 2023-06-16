@@ -12,13 +12,15 @@ class UserController
         require_once HEADER;
         /* TODO: implements global function for permissions */
         /* FIXME: no string comparation for permissions */
-        if($_SESSION['id_rol'] === 1){
+        if(isset($_SESSION['id_rol']) && $_SESSION['id_rol'] === 1){
             $data = User::get_all();
-            require_once HEADER;
+
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
-            require_once FOOTER;
+
         } else {
+
             echo "Action not allowed";
+
         }
         require_once FOOTER;
     }
@@ -58,7 +60,19 @@ class UserController
         }
     }
 
-    public function delete($id){
-        echo $id;
+    public function delete(){
+        if($_SESSION['id_rol'] === 1){
+  
+            /* we collect the data sent from js, pass to integer and call the static function of the model for deletion */
+            $_post = json_decode(file_get_contents('php://input'), true);
+            $item = $_post['item'];
+            settype($item, 'int');
+            
+            $user = new User();
+            $user->delete($item);
+
+        } else {
+            echo "Not allowed";
+        }
     }
 }

@@ -13,7 +13,7 @@ class User extends Database
     protected static string $register_date;
     protected static int $id_rol = 2;  //1: admin, 2: regular_user
 
-    function __construct($email, $password, $name, $surname)
+    function __construct($email='', $password='', $name='', $surname='')
     {
         self::$email = $email;
         self::$password = $password;

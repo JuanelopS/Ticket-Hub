@@ -46,6 +46,7 @@ class LoginController
 
                 /* Login incorrect */
             } else {
+                
                 $message = "Email and/or password incorrect";
                 $this->view($message);
             }

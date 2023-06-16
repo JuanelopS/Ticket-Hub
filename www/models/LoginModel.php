@@ -35,6 +35,8 @@ class Login extends User
         $data = [$this->email_login];
         $user_data = parent::get_results_from_query($data);
 
+        var_dump($pwd_peppered);
+        var_dump($pwd_hashed);
         if($user_data !== array()){
 
             $result = [
