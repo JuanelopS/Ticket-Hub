@@ -11,8 +11,9 @@ abstract class Database
 
     /* CRUD ABSTRACT / STATIC FUNCTIONS FOR SUBCLASSES */
 
-    abstract protected static function get_all();
-    abstract protected static function get_by_id($id);
+/*     abstract protected static function get_all();
+    abstract protected static function get_by_id($id); */
+    abstract protected static function get();
     abstract protected static function insert();
     abstract protected static function delete($id);
     abstract protected static function update($id);
@@ -22,7 +23,9 @@ abstract class Database
     protected static function open_connection()
     {
         try {
-            self::$connection = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
+            self::$connection = new PDO(DB_DSN, DB_USER, DB_PASSWORD, array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            ));
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

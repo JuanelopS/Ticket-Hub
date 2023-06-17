@@ -13,8 +13,7 @@ class UserController
         /* TODO: implements global function for permissions */
         /* FIXME: no string comparation for permissions */
         if(isset($_SESSION['id_rol']) && $_SESSION['id_rol'] === 1){
-            $data = User::get_all();
-
+            $data = User::get();
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
 
         } else {
@@ -25,11 +24,11 @@ class UserController
         require_once FOOTER;
     }
 
-    public function profile() {
+    public function profile($id) {
         /* TODO: ADD PARAMS TO ROUTE FUNCTION */
         require_once HEADER;
-        echo "profile page<br>";
-        var_dump($_SESSION);
+        echo "profile page $id<br>";
+        
         require_once FOOTER;
     }
 

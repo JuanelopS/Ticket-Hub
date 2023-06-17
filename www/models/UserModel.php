@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseClass.php";
 class User extends Database
 {
 
-    protected static int $id_user;
+    protected static int $id;
     protected static string $email;
     private static string $password;
     protected static string $name;
@@ -31,7 +31,7 @@ class User extends Database
         $this->password = $password;
     }
 
-    public static function get_all()
+/*     public static function get_all()
     {
         parent::$query = "SELECT * FROM users";
         $result = self::get_results_from_query();
@@ -44,6 +44,21 @@ class User extends Database
         parent::$query = "SELECT * FROM users WHERE id_user = ?";
         $result = parent::get_results_from_query([$data]);
         return $result;
+    }
+ */
+
+    public static function get($data = ''){
+        if($data === ''){
+            parent::$query = "SELECT * FROM users";
+            $result = self::get_results_from_query();
+            parent::close_connection();
+            return $result;
+
+        } else {
+            parent::$query = "SELECT * FROM users WHERE id = ?";
+            $result = parent::get_results_from_query([$data]);
+            return $result;
+        }
     }
 
     public static function insert()
@@ -63,13 +78,13 @@ class User extends Database
 
     public static function delete($id)
     {
-        parent::$query = "DELETE FROM users WHERE id_user = ?";
+        parent::$query = "DELETE FROM users WHERE id = ?";
         parent::execute_query([$id]);
     }
 
     public static function update($id)
     {
-        parent::$query = "UPDATE users SET email = ?, password = ?, name = ?, surname = ? WHERE id_user = ?";
+        parent::$query = "UPDATE users SET email = ?, password = ?, name = ?, surname = ? WHERE id = ?";
 
         $data = [
             'email' => self::$email,
