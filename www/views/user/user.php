@@ -1,4 +1,3 @@
-<script src="../../assets/js/feather.min.js"></script>
 <div class="row">
     <div class="column">
         <table>
@@ -29,7 +28,4 @@
         </table>
     </div>
 </div>
-<script>
-    feather.replace()
-</script>
 <script src="../../assets/js/tables.js"></script>

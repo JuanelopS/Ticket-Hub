@@ -31,22 +31,6 @@ class User extends Database
         $this->password = $password;
     }
 
-/*     public static function get_all()
-    {
-        parent::$query = "SELECT * FROM users";
-        $result = self::get_results_from_query();
-        parent::close_connection();
-        return $result;
-    }
-
-    public static function get_by_id($data)
-    {
-        parent::$query = "SELECT * FROM users WHERE id_user = ?";
-        $result = parent::get_results_from_query([$data]);
-        return $result;
-    }
- */
-
     public static function get($data = ''){
         if($data === ''){
             parent::$query = "SELECT * FROM users";

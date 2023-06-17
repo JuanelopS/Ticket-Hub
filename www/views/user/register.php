@@ -1,6 +1,5 @@
     <div class="row">
-        <div class="column column-50 column-offset-25">
-
+        <div class="column column-20 column-offset-40">
             <h2>Register</h2>
             <!-- TODO: set max/min characters in form -->
             <form action="/user/exec_register" method="POST">

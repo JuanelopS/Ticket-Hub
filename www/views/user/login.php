@@ -1,7 +1,7 @@
 <!-- TODO: set max/min characters in form -->
 
 <div class="row">
-    <div class="column column-50 column-offset-25">
+    <div class="column column-20 column-offset-40">
         <h2>Login</h2>
         <form action="/login/check" method="POST">
             <label for="email">Email</label>

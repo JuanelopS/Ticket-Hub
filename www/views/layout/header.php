@@ -13,39 +13,39 @@
     <link rel="stylesheet" href="../../node_modules/milligram/dist/milligram.css">
     <!-- CSS  -->
     <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <!-- Feather icons -->
+    <script src="../../assets/js/feather.min.js"></script>
     <title>
-        <?= isset($title) ? $title : "NO TITLE" ?>
+        <?= isset($title) ? $title : "TICKET HUB" ?>
     </title>
 </head>
 
 <body>
     <div class="container">
         <header class="header">
-            <div class="row">
-                <div class="column column-offset-10">
+            <div class="row header-content">
+                <div class="column column-80 column-offset-10">
                     <div class="row">
-                        <div class="column column-50">
+                        <div class="column">
                             <div class="logo">
-                                <h2>HEADER</h2>
+                                <a href='/'><img class="logo_img" src="../../assets/images/logo.png" alt="ticket_hub_logo"></a>
                             </div>
-                            
                         </div>
                         <div class="column">
-                            <div class="header-login-btn justify-content">
+                            <div class="header-login-btn">
                                 <?php
 
                                 if (isset($_SESSION) && array_key_exists('name', $_SESSION)) {
 
                                     echo "
-                                        <p>Welcome " . ucfirst($_SESSION['name']) . "</p>
-                                        <a class='button button-outline button-small' href='/login/logout'>Logout</a>
+                                        <a class='button button-outline' href='/login/logout'>Logout</a>
                                      ";
                                 } else {
                                     echo
                                     "
-                                    <p>Welcome guest</p>
-                                    <a class='button button-outline button-small' href='/login/view'>Login</a>
-                                    <a class='button button-small' href='/user/register'>Register</a>
+                                    <a class='button button-outline' href='/login/view'>Login</a>
+                                    <a class='button' href='/user/register'>Register</a>
                                     ";
                                 }
                                 ?>
@@ -55,3 +55,6 @@
                 </div>
             </div>
         </header>
+        <main>
+            <div class="row">
+            <div class="column">
