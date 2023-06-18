@@ -14,21 +14,21 @@ class UserController
         /* FIXME: no string comparation for permissions */
         if(isset($_SESSION['id_rol']) && $_SESSION['id_rol'] === 1){
             $data = User::get();
-            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/user.php";
+            $tables = true;
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/list.php";
 
         } else {
-
             echo "Action not allowed";
-
         }
         require_once FOOTER;
     }
 
     public function profile($id) {
-        /* TODO: ADD PARAMS TO ROUTE FUNCTION */
+        /* TODO: THIS */
         require_once HEADER;
-        echo "profile page $id<br>";
-        
+        $user = new User();
+        $data = $user->get($id);
+        var_dump($data);
         require_once FOOTER;
     }
 
@@ -73,5 +73,39 @@ class UserController
         } else {
             echo "Not allowed";
         }
+    }
+
+    public function update($id){
+        if ($_SESSION['id'] === $id || $_SESSION['id_rol'] === 1) {
+
+            $user = new User();
+            $data = $user->get($id);
+            $data = array_merge(...$data);
+            
+            require_once HEADER;
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/update.php";
+            require_once FOOTER;
+
+        } else {
+            echo "Not allowed";
+        }
+    }
+
+    public function exec_update($id){
+
+        $user = new User();
+        $query = "UPDATE users SET email = ?, name = ?, surname = ? WHERE id = ?";
+
+        $data = [
+            'email' => $_POST['email'],
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'id' =>  $id
+        ];
+
+        $user->update($data,$query);
+
+        header("Location: /user/profile/" . $data['id']);
+
     }
 }

@@ -4,7 +4,7 @@
             <!-- TODO: set max/min characters in form -->
             <form action="/user/exec_register" method="POST">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" required autofocus>
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
                 <label for="name">Name</label>

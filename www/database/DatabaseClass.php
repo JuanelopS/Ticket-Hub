@@ -1,5 +1,9 @@
 <?php
 
+/* TODO: FUNCTION TO CREATE BACKUP DATABASE */
+/* TODO: TIME ZONE DATABASE SERVER */
+
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/config/constants.php";
 
 abstract class Database
@@ -16,7 +20,7 @@ abstract class Database
     abstract protected static function get();
     abstract protected static function insert();
     abstract protected static function delete($id);
-    abstract protected static function update($id);
+    abstract protected static function update($data, $query);
 
     /* OPEN / CLOSE CONNECTIONS */
 

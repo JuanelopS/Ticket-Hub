@@ -8,6 +8,8 @@
 
 html, body {
   height: 100%;
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .container {
@@ -61,14 +63,26 @@ th {
   font-weight: bold;
 }
 
+td {
+  align-items: center;
+}
+
 .feather {
   cursor: pointer;
 }
 
 .feather-x-octagon {
   color: red;
+  margin: 5px 4px;
 }
 
 .feather-edit {
   color: #9b4dca;
+  margin: 5px 4px;
+}
+
+.update_buttons{
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-between;
 }

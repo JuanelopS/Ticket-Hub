@@ -36,6 +36,9 @@
 <script>
     feather.replace()
 </script>
+<?php if(isset($tables)): ?>
+    <script src='../../assets/js/tables.js'></script>
+<?php endif; ?>
 </body>
 
 </html>

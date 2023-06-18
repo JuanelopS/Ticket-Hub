@@ -5,7 +5,7 @@
         <h2>Login</h2>
         <form action="/login/check" method="POST">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" name="email" id="email" required autofocus>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
             <input type="submit" value="Login">

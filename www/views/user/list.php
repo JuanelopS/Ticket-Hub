@@ -1,5 +1,6 @@
 <div class="row">
-    <div class="column">
+    <div class="column column-60 column-offset-20">
+        <h3>User's list</h3>
         <table>
             <thead>
                 <tr>
@@ -15,7 +16,9 @@
             foreach ($data as $value) {
                 $date = date_format(date_create($value['register_date']), 'd/m/Y H:i:s');
                 echo "<tr>";
-                echo "<td><i del='" . $value['id'] .  "' class='btn_delete' data-feather='x-octagon'></i><i upd='" . $value['id'] .  "' class='btn_update' data-feather='edit'></i></td>";
+                echo "<td><i del='" . $value['id'] .  "' class='btn_delete' data-feather='x-octagon'></i>
+                      <a href='/user/update/" . $value['id'] ."'><i upd='" . $value['id'] .  "' class='btn_update' data-feather='edit'></i></a></td>
+                ";
                 echo "<td>" . $value['id'] . "</td>";
                 echo "<td>" . $value['email'] . "</td>";
                 echo "<td>" . $value['name'] . "</td>";
@@ -28,4 +31,3 @@
         </table>
     </div>
 </div>
-<script src="../../assets/js/tables.js"></script>

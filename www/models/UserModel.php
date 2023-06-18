@@ -66,18 +66,12 @@ class User extends Database
         parent::execute_query([$id]);
     }
 
-    public static function update($id)
+    public static function update($data, $query)
     {
-        parent::$query = "UPDATE users SET email = ?, password = ?, name = ?, surname = ? WHERE id = ?";
+        parent::$query = $query;
 
-        $data = [
-            'email' => self::$email,
-            'password' => self::$password,
-            'name' => self::$name,
-            'surname' => self::$surname,
-            'id_user' => $id
-        ];
+        $data_update = $data;
 
-        parent::execute_query(array_values($data));
+        parent::execute_query(array_values($data_update));
     }
 }

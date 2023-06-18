@@ -1,3 +1,4 @@
+
 let btnDelete = document.querySelectorAll(".btn_delete");
 let btnUpdate = document.querySelectorAll(".btn_update");
 
