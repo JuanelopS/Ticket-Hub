@@ -69,9 +69,7 @@ class User extends Database
     public static function update($data, $query)
     {
         parent::$query = $query;
-
         $data_update = $data;
-
         parent::execute_query(array_values($data_update));
     }
 }
