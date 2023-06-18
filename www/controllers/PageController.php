@@ -6,7 +6,11 @@ class PageController {
     public function home(){
         session_start();
         require_once HEADER;
-        require_once HOME;
+        if($_SESSION == array()){
+            require_once LOGIN;
+        }   else {
+            var_dump($_SESSION);
+        }
         require_once FOOTER;
     }
 

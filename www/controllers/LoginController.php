@@ -12,7 +12,7 @@ class LoginController
         $login_message = $message;
         /* TODO: DONT SHOW IF USER IS LOGGED */
         require_once HEADER;
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/login.php";
+        require_once LOGIN;
         require_once FOOTER;
     }
 
@@ -39,10 +39,17 @@ class LoginController
             /* Login correct */
             if ($result['verify_password']) {
 
-                Session::open_session(array_merge(...$result['user_data']));
+                $result['user_data'] = array_merge(...$result['user_data']);
+                Session::open_session($result['user_data']);
 
-                /* TODO: IMPLEMENTS SOMETHING LESS BASIC */
-                header("Location: /");
+                settype($result['user_data']['id_rol'], 'int');
+
+                if($result['user_data']['id_rol'] !== 1){
+                    header("Location: /user/profile/" . $result['user_data']['id']);
+                } else {
+                    header("Location: /user/list");
+                }
+                
 
                 /* Login incorrect */
             } else {

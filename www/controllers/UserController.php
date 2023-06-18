@@ -105,7 +105,10 @@ class UserController
 
         $user->update($data,$query);
 
-        header("Location: /user/profile/" . $data['id']);
-
+        if($_SESSION['id_rol'] !== 1){
+            header("Location: /user/profile/" . $data['id']);
+        } else {
+            header("Location: /user/list");
+        }
     }
 }
