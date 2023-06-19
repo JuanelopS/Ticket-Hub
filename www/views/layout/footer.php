@@ -9,7 +9,6 @@
                 <li><a href="#">Acerca de nosotros</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Política de privacidad</a></li>
             </ul>
         </div>
         <div class="footer-section">

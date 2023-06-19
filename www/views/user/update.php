@@ -10,7 +10,7 @@
                 <label for="surname">Surname</label>
                 <input type="text" name="surname" id="surname" value="<?= $data['surname'] ?>" required>
                 <div class="update_buttons">
-                    <input type="submit" value="Update" name="action_update">
+                    <input class="form-button" type="submit" value="Update" name="action_update">
                     <input type="submit" value="Change Password" name="action_change_password" disabled>
                 </div>
             </form>

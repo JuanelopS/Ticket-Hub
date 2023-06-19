@@ -11,7 +11,7 @@
                 <input type="text" name="name" id="name" required>
                 <label for="surname">Surname</label>
                 <input type="text" name="surname" id="surname" required>
-                <input type="submit" value="Register">
+                <input class="form-button" type="submit" value="Register">
             </form>
         </div>
     </div>

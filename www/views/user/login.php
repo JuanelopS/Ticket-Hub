@@ -8,7 +8,7 @@
             <input type="email" name="email" id="email" required autofocus>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
-            <input type="submit" value="Login">
+            <input class="form-button" type="submit" value="Login">
         </form>
     </div>
 </div>
