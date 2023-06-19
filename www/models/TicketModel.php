@@ -2,7 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseClass.php";
 
-class User extends Database
+class Ticket extends Database
 {
 
     protected static int $id;
@@ -14,7 +14,7 @@ class User extends Database
     protected static string $modification_date;
     protected static int $user_id;
 
-    function __construct($type = '', $priority = '', $ticket_text = '', $state = '', $user_id='')
+    function __construct($type = '', $priority = '', $ticket_text = '', $state = '', $user_id = '')
     {
         self::$type = $type;
         self::$priority = $priority;
@@ -35,6 +35,14 @@ class User extends Database
             $result = parent::get_results_from_query([$data]);
             return $result;
         }
+    }
+
+    public static function get_ticket_types()
+    {
+        parent::$query = "SELECT * FROM tickets_type";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return $result;
     }
 
     public static function insert()

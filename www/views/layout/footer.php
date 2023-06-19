@@ -1,6 +1,5 @@
-</div> <!-- end div.column -->
-</div> <!-- end row -->
 </main>
+</div> <!-- end div.container -->
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -31,11 +30,11 @@
     </div>
     <p>© <?= date("Y") ?> Todos los derechos reservados</p>
 </footer>
-</div> <!-- end div.container -->
+
 <script>
     feather.replace()
 </script>
-<?php if(isset($tables)): ?>
+<?php if (isset($tables)) : ?>
     <script src='../../assets/js/tables.js'></script>
 <?php endif; ?>
 </body>

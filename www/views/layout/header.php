@@ -25,36 +25,29 @@
     <div class="container">
         <header class="header">
             <div class="row header-content">
-                <div class="column column-80 column-offset-10">
-                    <div class="row">
-                        <div class="column">
-                            <div class="logo">
-                                <a href='/'><img class="logo_img" src="../../assets/images/logo.png" alt="ticket_hub_logo"></a>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="header-login-btn">
-                                <?php
+                <div class="column">
+                    <div class="logo">
+                        <a href='/'><img class="logo_img" src="../../assets/images/logo.png" alt="ticket_hub_logo"></a>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="header-login-btn">
+                        <?php
+                        if (isset($_SESSION) && array_key_exists('name', $_SESSION)) {
 
-                                if (isset($_SESSION) && array_key_exists('name', $_SESSION)) {
-
-                                    echo "
+                            echo "
                                         <a class='button button-outline' href='/login/logout'>Logout</a>
                                      ";
-                                } else {
-                                    echo
-                                    "
+                        } else {
+                            echo
+                            "
                                     <a class='button button-outline' href='/login/view'>Login</a>
                                     <a class='button' href='/user/register'>Register</a>
                                     ";
-                                }
-                                ?>
-                            </div>
-                        </div>
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </header>
         <main>
-            <div class="row">
-            <div class="column">

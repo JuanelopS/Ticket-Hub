@@ -16,16 +16,11 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 100%;
   padding: 0;
 }
 
 main {
   flex-grow: 1;
-}
-
-.row {
-  width: 100%;
 }
 
 .header{
@@ -39,7 +34,7 @@ main {
 }
 
 .logo_img{
-  width: 250px;
+  width: 240px;
 }
 
 .header-login-btn{
@@ -91,4 +86,8 @@ td {
   display: flex;
   margin-top: 2rem;
   justify-content: space-between;
+}
+
+textarea {
+  resize: none;
 }
