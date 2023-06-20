@@ -21,7 +21,7 @@
     </title>
 </head>
 
-<body>
+<body class="magicpattern">
     <div class="container">
         <header class="header">
             <div class="row header-content">

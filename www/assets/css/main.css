@@ -12,6 +12,17 @@ html, body {
   user-select: none;
 }
 
+/* background from https://www.magicpattern.design/ */
+.magicpattern { 
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 2000 1400%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask id=%22b%22 x=%220%22 y=%220%22 width=%222000%22 height=%221400%22%3E%3Cpath fill=%22url(%23a)%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3C%2Fmask%3E%3Cpath fill=%22%23fff%22 d=%22M0 0h2000v1400H0z%22%2F%3E%3Cg style=%22transform-origin:center center%22 stroke=%22%239b4dca%22 stroke-width=%222.4%22 mask=%22url(%23b)%22%3E%3Cpath fill=%22%239b4dca8f%22 d=%22M665 0h133v133H665z%22%2F%3E%3Cpath fill=%22none%22 d=%22M798 0h133v133H798z%22%2F%3E%3Cpath fill=%22%239b4dca0d%22 d=%22M1197 0h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1330 0h133v133h-133z%22%2F%3E%3Cpath fill=%22%239b4dca69%22 d=%22M1463 0h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1862 0h133v133h-133zM399 133h133v133H399zM1064 133h133v133h-133zM1463 133h133v133h-133zM0 266h133v133H0zM399 266h133v133H399z%22%2F%3E%3Cpath fill=%22%239b4dca60%22 d=%22M532 266h133v133H532z%22%2F%3E%3Cpath fill=%22none%22 d=%22M665 266h133v133H665zM931 266h133v133H931zM0 399h133v133H0zM133 399h133v133H133zM399 399h133v133H399zM931 399h133v133H931z%22%2F%3E%3Cpath fill=%22%239b4dcad3%22 d=%22M1596 399h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1862 399h133v133h-133zM133 532h133v133H133z%22%2F%3E%3Cpath fill=%22%239b4dca3f%22 d=%22M1064 532h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1197 532h133v133h-133zM1463 532h133v133h-133zM1596 532h133v133h-133zM266 665h133v133H266zM399 665h133v133H399zM532 665h133v133H532z%22%2F%3E%3Cpath fill=%22%239b4dca47%22 d=%22M665 665h133v133H665z%22%2F%3E%3Cpath fill=%22%239b4dca96%22 d=%22M1330 665h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M1463 665h133v133h-133z%22%2F%3E%3Cpath fill=%22%239b4dca29%22 d=%22M1862 665h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M266 798h133v133H266zM532 798h133v133H532zM1197 798h133v133h-133zM1330 798h133v133h-133z%22%2F%3E%3Cpath fill=%22%239b4dcafd%22 d=%22M1862 798h133v133h-133z%22%2F%3E%3Cpath fill=%22%239b4dcaba%22 d=%22M0 931h133v133H0z%22%2F%3E%3Cpath fill=%22%239b4dca29%22 d=%22M665 931h133v133H665z%22%2F%3E%3Cpath fill=%22none%22 d=%22M798 931h133v133H798zM1197 931h133v133h-133zM1596 931h133v133h-133zM0 1064h133v133H0zM133 1064h133v133H133z%22%2F%3E%3Cpath fill=%22%239b4dcae8%22 d=%22M399 1064h133v133H399z%22%2F%3E%3Cpath fill=%22none%22 d=%22M665 1064h133v133H665z%22%2F%3E%3Cpath fill=%22%239b4dca60%22 d=%22M1197 1064h133v133h-133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M0 1197h133v133H0zM133 1197h133v133H133zM1330 1197h133v133h-133zM1862 1197h133v133h-133z%22%2F%3E%3Cpath fill=%22%239b4dca33%22 d=%22M133 1330h133v133H133z%22%2F%3E%3Cpath fill=%22none%22 d=%22M266 1330h133v133H266zM1330 1330h133v133h-133zM1729 1330h133v133h-133z%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CradialGradient id=%22a%22%3E%3Cstop offset=%2250%25%22 stop-color=%22%23fff%22 stop-opacity=%220%22%2F%3E%3Cstop offset=%221%22 stop-color=%22%23fff%22 stop-opacity=%22.5%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
+}
+
+
 .container {
   display: flex;
   flex-direction: column;
