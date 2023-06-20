@@ -14,7 +14,7 @@ class Ticket extends Database
     protected static string $modification_date;
     protected static int $user_id;
 
-    function __construct($type = '', $priority = '', $ticket_text = '', $state = '', $user_id = '')
+    function __construct($type = 0, $priority = 0, $ticket_text = '', $state = 1, $user_id = 0)
     {
         self::$type = $type;
         self::$priority = $priority;

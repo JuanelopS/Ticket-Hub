@@ -91,3 +91,8 @@ td {
 textarea {
   resize: none;
 }
+
+[type=text], select, textarea {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+}
