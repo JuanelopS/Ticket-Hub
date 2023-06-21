@@ -1,4 +1,4 @@
-<form>
+<form action="" method="POST">
     <div class="row">
         <div class="column column-33 column-offset-33">
             <h3>New Ticket</h3>
@@ -7,6 +7,13 @@
                 <option></option>
                 <?php foreach ($ticket_types as $row => $value) : ?>
                     <?= "<option value=" . $value['id'] . ">" . $value['id'] . " - " . $value['type'] . "</option>" ?>
+                <?php endforeach; ?>
+            </select>
+            <label for="ticket-type">Priority</label>
+            <select id="ticket-priority">
+                <option></option>
+                <?php foreach ($ticket_priorities as $row => $value) : ?>
+                    <?= "<option value=" . $value['id'] . ">" . $value['priority_name'] . "</option>" ?>
                 <?php endforeach; ?>
             </select>
             <div class="form-group">

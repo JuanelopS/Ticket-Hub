@@ -41,8 +41,8 @@
                         } else {
                             echo
                             "
-                                    <a class='button button-outline' href='/login/view'>Login</a>
-                                    <a class='button' href='/user/register'>Register</a>
+                                    <a class='button' href='/login/view'>Login</a>
+                                    <a class='button button-outline' href='/user/register'>Register</a>
                                     ";
                         }
                         ?>

@@ -45,6 +45,13 @@ class Ticket extends Database
         return $result;
     }
 
+    public static function get_ticket_priorities() {
+        parent::$query = "SELECT * FROM tickets_priority";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return $result;
+    }
+
     public static function insert()
     {
         parent::$query = "INSERT INTO tickets (type, priority, ticket_text, state, user_id) VALUES (?, ?, ?, ?, ?)";

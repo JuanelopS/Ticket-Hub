@@ -11,6 +11,7 @@ class TicketController
     {
         $ticket = new Ticket();
         $ticket_types = $ticket->get_ticket_types();
+        $ticket_priorities = $ticket->get_ticket_priorities();
         // var_dump($ticket_types);
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/ticket/send.php';
