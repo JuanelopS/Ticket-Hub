@@ -17,4 +17,22 @@ class TicketController
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/ticket/send.php';
         require_once FOOTER;
     }
+
+    function exec_send_ticket()
+    {
+        if ($_POST != null) {
+
+            $type = $_POST['type'];
+            $priority = $_POST['priority'];
+            $ticket_text = $_POST['ticket_text'];
+            $state = $_POST['state'];
+            $user_id = $_SESSION['id'];
+
+            $ticket = new Ticket($type, $priority, $ticket_text, $state, $user_id);
+            $ticket->insert();
+
+            /* TODO: REDIRECT AFTER REGISTER USER LESS BASIC... */
+            header("Location: /user/profile/" . $user_id);
+        }
+    }
 }
