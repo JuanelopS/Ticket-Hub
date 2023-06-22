@@ -26,8 +26,8 @@ class UserController
     public function profile($id) {
         /* TODO: THIS */
         require_once HEADER;
-        $user = new User();
-        $data = $user->get($id);
+        $data = new User();
+        $data = $data->get_tickets_from_user($id);
         var_dump($data);
         require_once FOOTER;
     }

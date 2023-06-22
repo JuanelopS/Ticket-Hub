@@ -72,4 +72,10 @@ class User extends Database
         $data_update = $data;
         parent::execute_query(array_values($data_update));
     }
+
+    public static function get_tickets_from_user($id) {
+        parent::$query = "SELECT * FROM tickets WHERE user_id = ?";
+        $result = parent::get_results_from_query([$id]);
+        return array_merge(...$result);
+    }
 }

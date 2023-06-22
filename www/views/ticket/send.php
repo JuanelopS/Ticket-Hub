@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="/ticket/exec_send_ticket" method="POST">
     <div class="row">
         <div class="column column-33 column-offset-33">
             <h3>New Ticket</h3>
