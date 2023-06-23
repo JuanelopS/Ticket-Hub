@@ -27,10 +27,18 @@ class UserController
         /* TODO: THIS */
         require_once HEADER;
         $data = new User();
-        $data = $data->get_tickets_from_user($id);
-        echo "<pre>";
-        var_dump($data);
-        echo "</pre>";
+        $data = $data->get($id);
+        if($data == array()){
+            echo "User not found";
+            die();
+        } else {
+            $data = array_merge(...$data);
+            echo "Welcome to your profile " . $data['name'];
+            echo "<pre>";
+            var_dump($data);
+            echo "</pre>";
+        }
+        
         require_once FOOTER;
     }
 
