@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 class UserController
 {
 
-    public function list()
+    public function user_list()
     {
         require_once HEADER;
         /* TODO: implements global function for permissions */
@@ -28,7 +28,9 @@ class UserController
         require_once HEADER;
         $data = new User();
         $data = $data->get_tickets_from_user($id);
+        echo "<pre>";
         var_dump($data);
+        echo "</pre>";
         require_once FOOTER;
     }
 

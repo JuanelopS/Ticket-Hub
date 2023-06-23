@@ -78,4 +78,5 @@ class User extends Database
         $result = parent::get_results_from_query([$id]);
         return array_merge(...$result);
     }
+
 }

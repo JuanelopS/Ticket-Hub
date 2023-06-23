@@ -1,6 +1,6 @@
 <div class="row">
     <div class="column column-80 column-offset-10">
-        <h3>User's list</h3>
+        <h3>User list</h3>
         <table>
             <thead>
                 <tr>
@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <?php
-            foreach ($data as $value) {
+            foreach ($users as $value) {
                 $date = date_format(date_create($value['register_date']), 'd/m/Y H:i:s');
                 echo "<tr>";
                 echo "<td><i del='" . $value['id'] .  "' class='btn_delete' data-feather='x-octagon'></i>

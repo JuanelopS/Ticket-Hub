@@ -18,7 +18,12 @@ class TicketController
         require_once FOOTER;
     }
 
-    function exec_send_ticket()
+    public function ticket_list(){
+        $ticket = new Ticket();
+        return $ticket->get();
+    }
+
+    public function exec_send_ticket()
     {
         if ($_POST != null) {
 

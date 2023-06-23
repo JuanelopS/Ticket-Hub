@@ -11,7 +11,7 @@ class PageController {
         }   else {
             var_dump($_SESSION);
         }
-        require_once FOOTER;
+        require_once FOOTER; 
     }
 
     public function _404(){

@@ -25,18 +25,33 @@ class Ticket extends Database
         self::$user_id = $user_id;
     }
 
-    public static function get($data = '')
+    public static function get()
     {
-        if ($data === '') {
-            parent::$query = "SELECT * FROM tickets";
-            $result = self::get_results_from_query();
-            parent::close_connection();
-            return $result;
-        } else {
-            parent::$query = "SELECT * FROM tickets WHERE id = ?";
-            $result = parent::get_results_from_query([$data]);
-            return $result;
-        }
+        parent::$query = "SELECT * FROM tickets";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return $result;
+    }
+
+    public static function get_ticket_users()
+    {
+        parent::$query = "SELECT
+                            tickets.id AS id,
+                            tickets_priority.priority_name AS priority,
+                            tickets_type.type AS type,
+                            CONCAT(`users`.`name`, ' ', `users`.`surname`) AS user,
+                            tickets.subject AS subject,
+                            tickets.creation_date AS creation_date,
+                            tickets.modification_date AS modification_date,
+                            tickets_state.ticket_state AS state
+                            FROM tickets
+                            INNER JOIN users ON tickets.user_id = users.id
+                            INNER JOIN tickets_type ON tickets.type = tickets_type.id
+                            INNER JOIN tickets_priority ON tickets.priority = tickets_priority.id
+                            INNER JOIN tickets_state ON tickets.state = tickets_state.id";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return $result;
     }
 
     public static function get_ticket_types()
@@ -47,7 +62,8 @@ class Ticket extends Database
         return $result;
     }
 
-    public static function get_ticket_priorities() {
+    public static function get_ticket_priorities()
+    {
         parent::$query = "SELECT * FROM tickets_priority";
         $result = self::get_results_from_query();
         parent::close_connection();

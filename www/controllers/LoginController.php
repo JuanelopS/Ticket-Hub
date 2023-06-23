@@ -47,7 +47,7 @@ class LoginController
                 if($result['user_data']['id_rol'] !== 1){
                     header("Location: /user/profile/" . $result['user_data']['id']);
                 } else {
-                    header("Location: /user/list");
+                    header("Location: /admin/dashboard");
                 }
                 
 
