@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Jun 21, 2023 at 01:00 PM
+-- Generation Time: Jun 23, 2023 at 10:05 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.0.19
 
@@ -30,13 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `tickets` (
   `id` int NOT NULL,
   `type` int NOT NULL,
+  `subject` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
   `ticket_text` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `state` int NOT NULL,
+  `state` int NOT NULL DEFAULT '1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modification_date` datetime NOT NULL,
+  `modification_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int NOT NULL,
   `priority` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `tickets`
+--
+
+INSERT INTO `tickets` (`id`, `type`, `subject`, `ticket_text`, `state`, `creation_date`, `modification_date`, `user_id`, `priority`) VALUES
+(1, 1, 'test subject', 'test message', 1, '2023-06-22 12:48:16', '2023-06-22 12:48:16', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -46,8 +54,39 @@ CREATE TABLE `tickets` (
 
 CREATE TABLE `tickets_priority` (
   `id` int NOT NULL,
-  `priority_name` varchar(50) COLLATE utf8mb3_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `priority_name` varchar(50) COLLATE utf32_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `tickets_priority`
+--
+
+INSERT INTO `tickets_priority` (`id`, `priority_name`) VALUES
+(1, 'Normal'),
+(2, 'Low'),
+(3, 'High'),
+(4, 'Urgent');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tickets_state`
+--
+
+CREATE TABLE `tickets_state` (
+  `id` int NOT NULL,
+  `ticket_state` varchar(10) COLLATE utf32_unicode_ci NOT NULL,
+  `ticket_state_label` varchar(50) COLLATE utf32_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `tickets_state`
+--
+
+INSERT INTO `tickets_state` (`id`, `ticket_state`, `ticket_state_label`) VALUES
+(1, 'todo', 'ToDo'),
+(2, 'wip', 'Work In Progress'),
+(3, 'done', 'Done');
 
 -- --------------------------------------------------------
 
@@ -57,9 +96,9 @@ CREATE TABLE `tickets_priority` (
 
 CREATE TABLE `tickets_type` (
   `id` int NOT NULL,
-  `type` varchar(40) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `label` varchar(100) COLLATE utf8mb3_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `type` varchar(40) COLLATE utf32_unicode_ci NOT NULL,
+  `label` varchar(100) COLLATE utf32_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `tickets_type`
@@ -106,8 +145,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `register_dat
 
 CREATE TABLE `users_roles` (
   `id` tinyint(1) NOT NULL,
-  `role` varchar(15) COLLATE utf8mb3_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `role` varchar(15) COLLATE utf32_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `users_roles`
@@ -128,12 +167,19 @@ ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `ticket_type` (`type`),
-  ADD KEY `priority` (`priority`);
+  ADD KEY `priority` (`priority`),
+  ADD KEY `state` (`state`);
 
 --
 -- Indexes for table `tickets_priority`
 --
 ALTER TABLE `tickets_priority`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tickets_state`
+--
+ALTER TABLE `tickets_state`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -163,13 +209,19 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tickets_priority`
 --
 ALTER TABLE `tickets_priority`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tickets_state`
+--
+ALTER TABLE `tickets_state`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tickets_type`
@@ -199,7 +251,8 @@ ALTER TABLE `users_roles`
 ALTER TABLE `tickets`
   ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`type`) REFERENCES `tickets_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`priority`) REFERENCES `tickets_priority` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`priority`) REFERENCES `tickets_priority` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tickets_ibfk_4` FOREIGN KEY (`state`) REFERENCES `tickets_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `users`
