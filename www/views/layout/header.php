@@ -14,6 +14,9 @@
     <!-- CSS  -->
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
+    <?php if (isset($tables)) : ?>
+    <link rel="stylesheet" href="../../assets/css/tables.css">
+    <?php endif; ?>
     <!-- Feather icons -->
     <script src="../../assets/js/feather.min.js"></script>
     <title>

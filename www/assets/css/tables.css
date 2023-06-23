@@ -1,0 +1,82 @@
+th {
+  font-weight: bold;
+}
+
+td {
+  align-items: center;
+  font-size: 15px;
+  line-height: 10px;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.form-button {
+  margin-right: 8px;
+}
+
+.feather {
+  cursor: pointer;
+}
+
+.feather-x-octagon {
+  color: red;
+}
+
+.feather-edit {
+  color: #9b4dca;
+}
+
+.feather-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.feather-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.feather-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.feather-48 {
+  width: 48px;
+  height: 48px;
+}
+
+.badge-urgent,
+.badge-high,
+.badge-normal,
+.badge-low {
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.badge-urgent {
+  background-color: red;
+}
+
+.badge-normal {
+  background-color: blue;
+}
+
+.badge-low {
+  background-color: green;
+}
+
+.badge-high {
+  background-color: orange;
+}
+
+.badge-small {
+  font-size: 16px;
+}
+
+

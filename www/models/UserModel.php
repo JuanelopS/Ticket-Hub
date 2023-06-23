@@ -11,7 +11,7 @@ class User extends Database
     protected static string $name;
     protected static string $surname;
     protected static string $register_date;
-    protected static int $id_rol = 2;  //1: admin, 2: regular_user
+    protected static int $role = 2;  //1: admin, 2: regular_user
 
     function __construct($email='', $password='', $name='', $surname='')
     {
@@ -47,14 +47,14 @@ class User extends Database
 
     public static function insert()
     {
-        parent::$query = "INSERT INTO users (email,password,name,surname, id_rol) VALUES (?, ?, ?, ?, ?)";
+        parent::$query = "INSERT INTO users (email,password,name,surname, role) VALUES (?, ?, ?, ?, ?)";
 
         $data = [
             'email' => self::$email,
             'password' => self::$password,
             'name' => self::$name,
             'surname' => self::$surname,
-            'id_rol' => self::$id_rol
+            'role' => self::$role
         ];
 
         parent::execute_query(array_values($data));

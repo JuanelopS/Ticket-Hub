@@ -5,16 +5,24 @@ class PageController {
 
     public function home(){
         session_start();
-        require_once HEADER;
+        
         if($_SESSION == array()){
+            require_once HEADER;
             require_once LOGIN;
+            require_once FOOTER; 
         }   else {
-            var_dump($_SESSION);
+            if($_SESSION['role'] == 1)
+                header("Location: /admin/dashboard");
+            else {
+                header("Location: /user/profile/" . $_SESSION['id']);
+            }
         }
-        require_once FOOTER; 
+
     }
 
     public function _404(){
-        echo "404 - Page not found";
+        require_once HEADER;
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/pages/404.php';
+        require_once FOOTER;
     }
 }

@@ -42,9 +42,9 @@ class LoginController
                 $result['user_data'] = array_merge(...$result['user_data']);
                 Session::open_session($result['user_data']);
 
-                settype($result['user_data']['id_rol'], 'int');
+                settype($result['user_data']['role'], 'int');
 
-                if($result['user_data']['id_rol'] !== 1){
+                if($result['user_data']['role'] !== 1){
                     header("Location: /user/profile/" . $result['user_data']['id']);
                 } else {
                     header("Location: /admin/dashboard");

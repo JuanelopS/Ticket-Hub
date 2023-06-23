@@ -126,14 +126,14 @@ CREATE TABLE `users` (
   `name` varchar(128) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `surname` varchar(128) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_rol` tinyint(1) NOT NULL DEFAULT '2'
+  `role` tinyint(1) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `register_date`, `id_rol`) VALUES
+INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `register_date`, `role`) VALUES
 (5, 'carita@carita.com', '$2y$10$IOcYperrWJJHS.73ik8xdO/gjIrfezxT0Nf3ztE5o7is8fvDfkqs2', 'Sheila', 'Tejedor', '2023-06-18 16:39:58', 2),
 (6, 'admin@admin.com', '$2y$10$VlqDXt6XFUQJ/eVQubgrqewX/jznnvXdb5uGaRvLWR2aGpNQ./U7i', 'Admin', 'Admin', '2023-06-21 12:35:32', 1);
 
@@ -193,7 +193,7 @@ ALTER TABLE `tickets_type`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_rol` (`id_rol`);
+  ADD KEY `role` (`role`);
 
 --
 -- Indexes for table `users_roles`
@@ -258,7 +258,7 @@ ALTER TABLE `tickets`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `users_roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `users_roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

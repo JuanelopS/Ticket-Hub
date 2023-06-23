@@ -6,6 +6,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 
 class TicketController
 {
+
+    public function details($id){
+
+        $tables = true;
+        $ticket = new Ticket();
+        $data = array_merge(...$ticket->get_ticket_details($id));
+        require_once HEADER;
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/ticket/details.php';
+        require_once FOOTER;
+    }
     public function send()
     {
 

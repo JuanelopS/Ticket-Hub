@@ -22,7 +22,7 @@ class UserController
             die();
         } else {
             /* If user is admin or himself, can view profile */
-            if((isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) || $_SESSION['id'] == $id){
+            if((isset($_SESSION['role']) && $_SESSION['role'] == 1) || $_SESSION['id'] == $id){
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/profile.php";
             } else {
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
@@ -60,8 +60,9 @@ class UserController
     }
 
     public function delete(){
-        if($_SESSION['id_rol'] === 1){
-  
+        /* TODO: FIX DATABASE INDEX CONSTRAINT (cannot delete user with tickets) */
+        if($_SESSION['role'] === 1){
+            
             /* we collect the data sent from js, pass to integer and call the static function of the model for deletion */
             $_post = json_decode(file_get_contents('php://input'), true);
             $item = $_post['item'];
@@ -76,11 +77,10 @@ class UserController
     }
 
     public function update($id){
-        if ($_SESSION['id'] === $id || $_SESSION['id_rol'] === 1) {
+        if ($_SESSION['id'] === $id || $_SESSION['role'] === 1) {
 
             $user = new User();
             $data = $user->get($id);
-            $data = array_merge(...$data);
             
             require_once HEADER;
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/update.php";
@@ -105,7 +105,7 @@ class UserController
 
         $user->update($data,$query);
 
-        if($_SESSION['id_rol'] !== 1){
+        if($_SESSION['role'] !== 1){
             header("Location: /user/profile/" . $data['id']);
         } else {
             header("Location: /admin/dashboard");

@@ -19,10 +19,9 @@
                     /* TODO: MAKE DAYS SUBSTRACT FOR BETTER SHOW IN VIEW */
                     $creation_date = date_format(date_create($value['creation_date']), 'd/m/Y H:i:s');
                     $modification_date = date_format(date_create($value['modification_date']), 'd/m/Y H:i:s');
-                    
-                    echo "<tr>";
+                    echo "<tr class='clickable-row' data-href='/ticket/details/" . $value['id']  . "'>";
                     echo "<td>" . $value['id'] . "</td>";
-                    echo "<td>" . $value['priority'] . "</td>";
+                    echo "<td><span class='priority-column'>" . $value['priority'] . "</span></td>";
                     echo "<td>" . $value['type'] . "</td>";
                     echo "<td>" . $value['user'] . "</td>";
                     echo "<td>" . $value['subject'] . "</td>";
@@ -30,6 +29,7 @@
                     echo "<td>" . $modification_date . "</td>";
                     echo "<td>" . $value['state'] . "</td>";
                     echo "</tr>";
+                    
                 }
             ?>
         </table>

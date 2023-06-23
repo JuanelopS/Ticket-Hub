@@ -33,13 +33,20 @@ class Ticket extends Database
             parent::close_connection();
             return $result;
         } else {
-            parent::$query = "SELECT * FROM tickets WHERE user_id = ?";
+            parent::$query = "SELECT * FROM tickets WHERE id = ?";
             $result = parent::get_results_from_query([$data]);
             return $result;
         }
     }
 
-    public static function get_ticket_users()
+    public static function get_ticket_by_user($user_id)
+    {
+        parent::$query = "SELECT * FROM tickets WHERE user_id = ?";
+        $result = parent::get_results_from_query([$user_id]);
+        return $result;
+    }
+
+    public static function get_tickets()
     {
         parent::$query = "SELECT
                             tickets.id AS id,
@@ -54,9 +61,32 @@ class Ticket extends Database
                             INNER JOIN users ON tickets.user_id = users.id
                             INNER JOIN tickets_type ON tickets.type = tickets_type.id
                             INNER JOIN tickets_priority ON tickets.priority = tickets_priority.id
-                            INNER JOIN tickets_state ON tickets.state = tickets_state.id";
+                            INNER JOIN tickets_state ON tickets.state = tickets_state.id
+                            ORDER BY tickets.id";
         $result = self::get_results_from_query();
         parent::close_connection();
+        return $result;
+    }
+
+    public static function get_ticket_details($id)
+    {
+        parent::$query = "SELECT
+                            tickets.id AS id,
+                            tickets_priority.priority_name AS priority,
+                            tickets_type.type AS type,
+                            CONCAT(`users`.`name`, ' ', `users`.`surname`) AS user,
+                            tickets.subject AS subject,
+                            tickets.ticket_text AS ticket_text,
+                            tickets.creation_date AS creation_date,
+                            tickets.modification_date AS modification_date,
+                            tickets_state.ticket_state AS state
+                            FROM tickets
+                            INNER JOIN users ON tickets.user_id = users.id
+                            INNER JOIN tickets_type ON tickets.type = tickets_type.id
+                            INNER JOIN tickets_priority ON tickets.priority = tickets_priority.id
+                            INNER JOIN tickets_state ON tickets.state = tickets_state.id
+                            WHERE tickets.id = ?";
+        $result = parent::get_results_from_query([$id]);
         return $result;
     }
 

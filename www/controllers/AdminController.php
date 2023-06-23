@@ -11,6 +11,7 @@ class AdminController
     public function dashboard()
     {
         session_start();
+        $tables = true;
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/admin/dashboard.php";
 
@@ -26,7 +27,7 @@ class AdminController
     public function get_all_tickets()
     {
         $tickets = new Ticket();
-        return $tickets->get_ticket_users();
+        return $tickets->get_tickets();
     }
 
     public function get_all_users(){

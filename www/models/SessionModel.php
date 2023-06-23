@@ -12,7 +12,7 @@ class Session {
         foreach($data as $key => $value) {
             $_SESSION[$key] = $value;
         }
-        settype($_SESSION['id_rol'],'int');
+        settype($_SESSION['role'],'int');
     }
 
     public static function close_session(){
