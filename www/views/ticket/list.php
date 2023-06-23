@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="column column-80 column-offset-10">
+    <div class="column">
         <h3>Ticket list</h3>
         <table>
             <thead>

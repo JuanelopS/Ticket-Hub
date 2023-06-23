@@ -25,12 +25,18 @@ class Ticket extends Database
         self::$user_id = $user_id;
     }
 
-    public static function get()
+    public static function get($data = '')
     {
-        parent::$query = "SELECT * FROM tickets";
-        $result = self::get_results_from_query();
-        parent::close_connection();
-        return $result;
+        if ($data === '') {
+            parent::$query = "SELECT * FROM tickets";
+            $result = self::get_results_from_query();
+            parent::close_connection();
+            return $result;
+        } else {
+            parent::$query = "SELECT * FROM tickets WHERE user_id = ?";
+            $result = parent::get_results_from_query([$data]);
+            return $result;
+        }
     }
 
     public static function get_ticket_users()

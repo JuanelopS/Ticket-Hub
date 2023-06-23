@@ -41,7 +41,7 @@ class User extends Database
         } else {
             parent::$query = "SELECT * FROM users WHERE id = ?";
             $result = parent::get_results_from_query([$data]);
-            return $result;
+            return array_merge(...$result);
         }
     }
 

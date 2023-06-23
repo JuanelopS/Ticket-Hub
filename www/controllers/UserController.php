@@ -3,40 +3,30 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/TicketModel.php";
 
 class UserController
 {
 
-    public function user_list()
-    {
-        require_once HEADER;
-        /* TODO: implements global function for permissions */
-        /* FIXME: no string comparation for permissions */
-        if(isset($_SESSION['id_rol']) && $_SESSION['id_rol'] === 1){
-            $data = User::get();
-            $tables = true;
-            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/list.php";
-
-        } else {
-            echo "Action not allowed";
-        }
-        require_once FOOTER;
-    }
-
     public function profile($id) {
         /* TODO: THIS */
         require_once HEADER;
-        $data = new User();
-        $data = $data->get($id);
+        $user = new User();
+        $ticket = new Ticket();
+
+        /* $data = array(user_data, user_tickets) */
+        $data = ['user_data' => $user->get($id), 'tickets_data' => $ticket->get($id)];
+
         if($data == array()){
-            echo "User not found";
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
             die();
         } else {
-            $data = array_merge(...$data);
-            echo "Welcome to your profile " . $data['name'];
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
+            /* If user is admin or himself, can view profile */
+            if((isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) || $_SESSION['id'] == $id){
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/profile.php";
+            } else {
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
+            }
         }
         
         require_once FOOTER;
@@ -118,7 +108,7 @@ class UserController
         if($_SESSION['id_rol'] !== 1){
             header("Location: /user/profile/" . $data['id']);
         } else {
-            header("Location: /user/list");
+            header("Location: /admin/dashboard");
         }
     }
 }

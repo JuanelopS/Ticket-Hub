@@ -1,1 +1,1 @@
-<h2>Admin dashboard</h2>
+<h2><b>Admin dashboard</b></h2>
