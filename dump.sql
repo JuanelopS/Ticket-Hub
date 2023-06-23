@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Jun 23, 2023 at 10:05 AM
+-- Generation Time: Jun 23, 2023 at 05:17 PM
 -- Server version: 8.0.33
--- PHP Version: 8.0.19
+-- PHP Version: 8.1.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tickets` (
   `id` int NOT NULL,
   `type` int NOT NULL,
-  `subject` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
+  `subject` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `ticket_text` text CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `state` int NOT NULL DEFAULT '1',
   `creation_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -44,7 +44,11 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `type`, `subject`, `ticket_text`, `state`, `creation_date`, `modification_date`, `user_id`, `priority`) VALUES
-(1, 1, 'test subject', 'test message', 1, '2023-06-22 12:48:16', '2023-06-22 12:48:16', 6, 1);
+(1, 1, 'test subject', 'test message', 1, '2023-06-22 12:48:16', '2023-06-22 12:48:16', 6, 1),
+(2, 2, 'No funciona internet', 'Pues eso, que no funciona internet, nada.', 1, '2023-06-23 12:29:17', '2023-06-23 12:29:17', 8, 3),
+(3, 3, 'No funciona la impresora', 'No impresora no funciona no hace nada', 1, '2023-06-23 13:14:53', '2023-06-23 13:14:53', 8, 2),
+(4, 4, 'no recibo emails', 'eso', 1, '2023-06-23 13:22:56', '2023-06-23 13:22:56', 8, 4),
+(5, 5, 'asdfasdfasdf', 'asdfasdfasdfasdfasdfasdf', 1, '2023-06-23 13:26:34', '2023-06-23 13:26:34', 8, 2);
 
 -- --------------------------------------------------------
 
@@ -54,7 +58,7 @@ INSERT INTO `tickets` (`id`, `type`, `subject`, `ticket_text`, `state`, `creatio
 
 CREATE TABLE `tickets_priority` (
   `id` int NOT NULL,
-  `priority_name` varchar(50) COLLATE utf32_unicode_ci NOT NULL
+  `priority_name` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
@@ -75,8 +79,8 @@ INSERT INTO `tickets_priority` (`id`, `priority_name`) VALUES
 
 CREATE TABLE `tickets_state` (
   `id` int NOT NULL,
-  `ticket_state` varchar(10) COLLATE utf32_unicode_ci NOT NULL,
-  `ticket_state_label` varchar(50) COLLATE utf32_unicode_ci NOT NULL
+  `ticket_state` varchar(10) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `ticket_state_label` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
@@ -96,8 +100,8 @@ INSERT INTO `tickets_state` (`id`, `ticket_state`, `ticket_state_label`) VALUES
 
 CREATE TABLE `tickets_type` (
   `id` int NOT NULL,
-  `type` varchar(40) COLLATE utf32_unicode_ci NOT NULL,
-  `label` varchar(100) COLLATE utf32_unicode_ci NOT NULL
+  `type` varchar(40) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `label` varchar(100) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
@@ -134,8 +138,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `register_date`, `role`) VALUES
-(5, 'carita@carita.com', '$2y$10$IOcYperrWJJHS.73ik8xdO/gjIrfezxT0Nf3ztE5o7is8fvDfkqs2', 'Sheila', 'Tejedor', '2023-06-18 16:39:58', 2),
-(6, 'admin@admin.com', '$2y$10$VlqDXt6XFUQJ/eVQubgrqewX/jznnvXdb5uGaRvLWR2aGpNQ./U7i', 'Admin', 'Admin', '2023-06-21 12:35:32', 1);
+(6, 'pedro@pedro.com', '$2y$10$VlqDXt6XFUQJ/eVQubgrqewX/jznnvXdb5uGaRvLWR2aGpNQ./U7i', 'Pedro3', 'Pedro3', '2023-06-21 12:35:32', 2),
+(7, 'admin@admin.com', '$2y$10$ros5duRJPgTTGdbl54ig3.cv./UPypnSU8GNJnuCxJK6tGgPEgQaS', 'Admin', 'Dios', '2023-06-23 11:33:18', 1),
+(8, 'user@user.com', '$2y$10$sMz0QO75aj90kWuag3907ObQbFqCapJzjLb1g2RXpO3Drp8dc08sm', 'user', 'user', '2023-06-23 12:16:47', 2);
 
 -- --------------------------------------------------------
 
@@ -145,7 +150,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `register_dat
 
 CREATE TABLE `users_roles` (
   `id` tinyint(1) NOT NULL,
-  `role` varchar(15) COLLATE utf32_unicode_ci NOT NULL
+  `role` varchar(15) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
@@ -193,7 +198,7 @@ ALTER TABLE `tickets_type`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role` (`role`);
+  ADD KEY `id_rol` (`role`);
 
 --
 -- Indexes for table `users_roles`
@@ -209,7 +214,7 @@ ALTER TABLE `users_roles`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tickets_priority`
@@ -233,7 +238,7 @@ ALTER TABLE `tickets_type`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_roles`
@@ -249,10 +254,10 @@ ALTER TABLE `users_roles`
 -- Constraints for table `tickets`
 --
 ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`type`) REFERENCES `tickets_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`priority`) REFERENCES `tickets_priority` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tickets_ibfk_4` FOREIGN KEY (`state`) REFERENCES `tickets_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tickets_ibfk_4` FOREIGN KEY (`state`) REFERENCES `tickets_state` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `tickets_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`
