@@ -6,7 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseClass.php";
 
 class Ticket extends Database
 {
-
     protected static int $id;
     protected static int $type;
     protected static int $priority; //1: normal, 2: low, 3: high, 4: urgent
@@ -179,6 +178,21 @@ class Ticket extends Database
             'message' => $response_text,
             'ticket_id' => $ticket_id,
             'user_id' => $user_id,
+        ];
+
+        parent::execute_query(array_values($data));
+    }
+
+    public static function update_modificacion_date($id)
+    {
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/dates.php";
+        $date = new Date();
+
+        parent::$query = "UPDATE tickets SET modification_date = ? WHERE id = ?";
+
+        $data = [
+            'modification_date' => $date->get_date(),
+            'id' => $id
         ];
 
         parent::execute_query(array_values($data));

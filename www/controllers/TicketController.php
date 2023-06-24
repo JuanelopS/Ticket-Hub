@@ -63,7 +63,7 @@ class TicketController
 
         $response = new Ticket();
         $response->insert_response($ticket_id, $response_text, $user_id);
+        $response->update_modificacion_date($ticket_id);
     }
-
 
 }

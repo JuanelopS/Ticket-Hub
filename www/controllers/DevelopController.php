@@ -45,4 +45,14 @@ class DevelopController
 
         echo "Appropriate Cost Found: " . $cost;
     }
+
+
+    public function dates(){
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/dates.php";
+
+        $date = new Date();
+        echo $date->get_date();
+        echo "<br>";
+        echo $date->calculate_days_ago('2023-06-23 14:59:59');
+    }
 }
