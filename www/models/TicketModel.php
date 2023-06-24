@@ -125,7 +125,16 @@ class Ticket extends Database
 
     public static function get_ticket_responses($id)
     {
-        parent::$query = "SELECT * FROM tickets_responses WHERE ticket_id = ? ORDER BY message_date ASC";
+        parent::$query = "SELECT 
+                            tickets_responses.id AS id, 
+                            tickets_responses.message AS message, 
+                            tickets_responses.message_date AS message_date, 
+                            tickets_responses.ticket_id AS ticket_id,
+                            CONCAT(`users`.`name`, ' ', `users`.`surname`) AS user
+                            FROM tickets_responses
+                            INNER JOIN users ON tickets_responses.user_id = users.id 
+                            WHERE tickets_responses.ticket_id = ? 
+                            ORDER BY tickets_responses.message_date ASC";
         $result = self::get_results_from_query([$id]);
         parent::close_connection();
         return $result;
@@ -160,14 +169,16 @@ class Ticket extends Database
         parent::execute_query(array_values($data_update));
     }
 
-    public static function insert_response($ticket_id, $response_text)
+    public static function insert_response($ticket_id, $response_text, $user_id)
     {
         settype($ticket_id, 'int');
-        parent::$query = "INSERT INTO tickets_responses (message, ticket_id) VALUES (?, ?)";
+        settype($user_id, 'int');
+        parent::$query = "INSERT INTO tickets_responses (message, ticket_id, user_id) VALUES (?, ?, ?)";
 
         $data = [
             'message' => $response_text,
             'ticket_id' => $ticket_id,
+            'user_id' => $user_id,
         ];
 
         parent::execute_query(array_values($data));

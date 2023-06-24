@@ -26,7 +26,7 @@
             } else {
                 echo "<div class='ticket-response' style='background-color: #9b4dca20 ; border:1px solid #9b4dca; border-radius: 5px; padding: 20px; margin-bottom: 25px;'>";
             }
-            echo "<span class='ticket-details-span'><b>" . $data['user'] . "</b> - " . $message_date . "</span>";
+            echo "<span class='ticket-details-span'><b>" . $value['user'] . "</b> - " . $message_date . "</span>";
             echo "<label>Response message:</label>";
             echo "<span class='ticket-details-span'>" . $value['message'] . "</span>";
             echo "</div>";
