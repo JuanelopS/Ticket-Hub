@@ -9,21 +9,22 @@ class UserController
 {
 
     public function profile($id) {
-        /* TODO: THIS */
-        require_once HEADER;
+
         $user = new User();
         $ticket = new Ticket();
+        $tables = true;
+        $tickets = $ticket->get_tickets_by_user($id);
+        $user = $user->get($id);
+        require_once HEADER;
 
-        /* $data = array(user_data, user_tickets) */
-        $data = ['user_data' => $user->get($id), 'tickets_data' => $ticket->get($id)];
-
-        if($data == array()){
+        if($user == array()){
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
             die();
         } else {
             /* If user is admin or himself, can view profile */
             if((isset($_SESSION['role']) && $_SESSION['role'] == 1) || $_SESSION['id'] == $id){
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/profile.php";
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/ticket/list.php";
             } else {
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
             }

@@ -10,6 +10,7 @@ class TicketController
     public function details($id){
 
         $tables = true;
+        $ticket_response = true;
         $ticket = new Ticket();
         $data = array_merge(...$ticket->get_ticket_details($id));
         require_once HEADER;

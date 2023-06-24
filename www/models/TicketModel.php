@@ -1,5 +1,7 @@
 <?php
 
+/* TODO: CLEAN SOME SQL FUNCTIONS NEEDED (REPEATED) */
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseClass.php";
 
 class Ticket extends Database
@@ -39,9 +41,24 @@ class Ticket extends Database
         }
     }
 
-    public static function get_ticket_by_user($user_id)
+    public static function get_tickets_by_user($user_id)
     {
-        parent::$query = "SELECT * FROM tickets WHERE user_id = ?";
+        parent::$query ="SELECT
+                            tickets.id AS id,
+                            tickets_priority.priority_name AS priority,
+                            tickets_type.type AS type,
+                            CONCAT(`users`.`name`, ' ', `users`.`surname`) AS user,
+                            tickets.subject AS subject,
+                            tickets.creation_date AS creation_date,
+                            tickets.modification_date AS modification_date,
+                            tickets_state.ticket_state AS state
+                            FROM tickets
+                            INNER JOIN users ON tickets.user_id = users.id
+                            INNER JOIN tickets_type ON tickets.type = tickets_type.id
+                            INNER JOIN tickets_priority ON tickets.priority = tickets_priority.id
+                            INNER JOIN tickets_state ON tickets.state = tickets_state.id
+                            WHERE user_id = ?
+                            ORDER BY tickets.creation_date DESC";
         $result = parent::get_results_from_query([$user_id]);
         return $result;
     }
