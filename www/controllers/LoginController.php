@@ -33,7 +33,8 @@ class LoginController
             if ($password_hashed) {
                 $result = $login->login($password_peppered, $password_hashed['password']);
             } else {
-                exit("User not exists");
+                /* TODO: MAKE THIS */
+                header("Location: /");
             }
 
             /* Login correct */
