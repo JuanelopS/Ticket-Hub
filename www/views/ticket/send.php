@@ -30,8 +30,8 @@
             </div>
             <div class=" form-group">
                 <button type="submit">Submit</button>
+                <a class="button" onclick="history.back()">Back</a>
             </div>
-
         </div>
     </div>
 </form>

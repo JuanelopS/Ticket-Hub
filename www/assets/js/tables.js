@@ -3,7 +3,7 @@
 let btnDelete = document.querySelectorAll(".btn_delete");
 let btnUpdate = document.querySelectorAll(".btn_update");
 
-const delete_item = (id) => {
+const deleteItem = (id) => {
   let data = {
     item: id,
   };
@@ -27,7 +27,7 @@ const delete_item = (id) => {
 
 btnDelete.forEach(element => {
   element.addEventListener("click", e => {
-    delete_item(e.currentTarget.attributes['del'].value);
+    deleteItem(e.currentTarget.attributes['del'].value);
   });
 });
 

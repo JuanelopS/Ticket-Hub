@@ -52,4 +52,16 @@ class TicketController
             header("Location: /user/profile/" . $user_id);
         }
     }
+
+    public function response(){
+
+        $_post = json_decode(file_get_contents('php://input'), true);
+        $ticket_id = $_post['ticket_id'];
+        $response_text = $_post['response_text'];
+
+        $response = new Ticket();
+        $response->insert_response($ticket_id, $response_text);
+    }
+
+
 }

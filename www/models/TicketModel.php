@@ -43,7 +43,7 @@ class Ticket extends Database
 
     public static function get_tickets_by_user($user_id)
     {
-        parent::$query ="SELECT
+        parent::$query = "SELECT
                             tickets.id AS id,
                             tickets_priority.priority_name AS priority,
                             tickets_type.type AS type,
@@ -150,5 +150,18 @@ class Ticket extends Database
         parent::$query = $query;
         $data_update = $data;
         parent::execute_query(array_values($data_update));
+    }
+
+    public static function insert_response($ticket_id, $response_text)
+    {
+        settype($ticket_id, 'int');
+        parent::$query = "INSERT INTO tickets_responses (message, ticket_id) VALUES (?, ?)";
+
+        $data = [
+            'message' => $response_text,
+            'ticket_id' => $ticket_id,
+        ];
+
+        parent::execute_query(array_values($data));
     }
 }

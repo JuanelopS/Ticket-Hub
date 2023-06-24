@@ -4,7 +4,7 @@
             <div class="ticket-details-title">
                 <b>Ticket details: <?= $data['subject'] . "</b> <span class='priority-column badge-small'>" . $data['priority'] ?></span>
             </div>
-            <div class="ticket">
+            <div id="ticket" ticket-id="<?= $data['id'] ?>">
                 <label>User: <span class="ticket-details-span"><?= $data['user'] ?></span></label>
                 <label>Type: <span class="ticket-details-span"><?= $data['type'] ?></span></label>
                 <label>Date: <span class="ticket-details-span"><?= $data['creation_date'] ?></span></label>
