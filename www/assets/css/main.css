@@ -82,7 +82,7 @@ textarea {
   font-weight: 400;
 }
 
-.ticket {
+#ticket {
   border: 1px solid #9b4dca;
   border-radius: 5px;
   padding: 20px;

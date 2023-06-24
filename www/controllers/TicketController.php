@@ -12,6 +12,7 @@ class TicketController
         $tables = true;
         $ticket_response = true;
         $ticket = new Ticket();
+        $responses = $ticket->get_ticket_responses($id);
         $data = array_merge(...$ticket->get_ticket_details($id));
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/ticket/details.php';

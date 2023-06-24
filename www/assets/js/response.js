@@ -1,5 +1,5 @@
-let ticketDetails = document.querySelector("#ticket-details");
 let ticketId = document.querySelector("#ticket");
+let ticketResponses = document.querySelector("#ticket-responses");
 
 /* CREATE A NEW RESPONSE BOX  */
 let newResponseBox = () => {
@@ -13,7 +13,7 @@ let newResponseBox = () => {
   textarea.setAttribute("placeholder", "Write your response here...");
   textarea.setAttribute("rows", "5");
   column.appendChild(textarea);
-  ticketDetails.appendChild(row);
+  ticketResponses.appendChild(row);
 };
 
 let ticketDetailsButtons = document.querySelector("#ticket-details-buttons");
@@ -69,5 +69,5 @@ const sendResponse = () => {
     (e) => {
       console.log("Error", e);
     }
-  ) /* .then(() => location.reload()) */;
+  ) .then(() => location.reload());
 };

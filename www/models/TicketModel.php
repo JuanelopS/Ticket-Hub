@@ -123,6 +123,14 @@ class Ticket extends Database
         return $result;
     }
 
+    public static function get_ticket_responses($id)
+    {
+        parent::$query = "SELECT * FROM tickets_responses WHERE ticket_id = ? ORDER BY message_date ASC";
+        $result = self::get_results_from_query([$id]);
+        parent::close_connection();
+        return $result;
+    }
+
     public static function insert()
     {
         parent::$query = "INSERT INTO tickets (type, priority, subject, ticket_text, state, user_id) VALUES (?, ?, ?, ?, ?, ?)";
