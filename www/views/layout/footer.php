@@ -31,6 +31,7 @@
     <p>© <?= date("Y") ?> Todos los derechos reservados</p>
 </footer>
 
+<!-- TODO: SEARCH METHOD TO GET JS ACCORDING TO VARIABLES (ARRAY, ETC) -->
 <script>
     feather.replace()
 </script>
@@ -39,6 +40,9 @@
 <?php endif; ?>
 <?php if (isset($ticket_response)) : ?>
     <script src='../../assets/js/response.js'></script>
+<?php endif; ?>
+<?php if (isset($password_js)) : ?>
+    <script src='../../assets/js/passwords.js'></script>
 <?php endif; ?>
 </body>
 

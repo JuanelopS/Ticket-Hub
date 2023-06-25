@@ -11,7 +11,7 @@
                 <input type="text" name="surname" id="surname" value="<?= $data['surname'] ?>" required>
                 <div class="update_buttons">
                     <input class="form-button" type="submit" value="Update" name="action_update">
-                    <input type="submit" value="Change Password" name="action_change_password" disabled>
+                    <a id="change-password-button" class="button" href="/user/change_password">Change password</a>
                 </div>
             </form>
         </div>

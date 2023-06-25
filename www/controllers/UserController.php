@@ -112,4 +112,32 @@ class UserController
             header("Location: /admin/dashboard");
         }
     }
+
+    public function change_password(){
+        $password_js = true;
+        require_once HEADER;
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/change_password.php";
+        require_once FOOTER;
+    }
+
+    public function exec_change_password(){
+        if($_POST != null) {
+            $user = new User();
+            $query = "UPDATE users SET password = ? WHERE id = ?";
+
+            $password = $_POST['password'];
+            $password_peppered = hash_hmac("sha256", $password, PEPPER);
+            $password_hashed = password_hash($password_peppered, PASSWORD_DEFAULT);
+            $password = $password_hashed;
+
+            $data = [
+                'password' => $password,
+                'id' =>  $_SESSION['id']
+            ];
+
+            $user->update($data,$query);
+
+            header("Location: /user/profile/" . $_SESSION['id']);
+        }
+    }
 }
