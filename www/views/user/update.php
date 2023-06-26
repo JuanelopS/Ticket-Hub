@@ -4,11 +4,11 @@
             <!-- TODO: set max/min characters in form -->
             <form action="<?= "/user/exec_update/" . $data['id'] ?>" method="POST">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" value="<?= $data['email'] ?>" readonly>
+                <input type="email" name="email" id="email" value="<?= $data['email'] ?>" maxlength="30" autofocus readonly>
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="<?= $data['name'] ?>" required>
+                <input type="text" name="name" id="name" value="<?= $data['name'] ?>" maxlength="30" required>
                 <label for="surname">Surname</label>
-                <input type="text" name="surname" id="surname" value="<?= $data['surname'] ?>" required>
+                <input type="text" name="surname" id="surname" value="<?= $data['surname'] ?>" maxlength="30" required>
                 <div class="update_buttons">
                     <input class="form-button" type="submit" value="Update" name="action_update">
                     <a id="change-password-button" class="button" href="/user/change_password">Change password</a>

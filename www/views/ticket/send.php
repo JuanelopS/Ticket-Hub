@@ -18,16 +18,16 @@
             </select>
             <div class="form-group">
                 <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required>
+                <input type="text" id="subject" name="subject" maxlength="50" required>
             </div>
-            <input type="hidden" id="user" name="user" value="<?= $_SESSION['id']?>">
+            <input type="hidden" id="user" name="user" value="<?= $_SESSION['id'] ?>">
         </div>
     </div>
     <div class="row">
         <div class="column column-50 column-offset-33">
             <div class="form-group">
                 <label for="ticket_text">Message</label>
-                <textarea id="ticket_text" name="ticket_text" rows="8" style="height:auto;" required></textarea>
+                <textarea id="ticket_text" name="ticket_text" rows="8" style="height:auto;" maxlength="568"  required></textarea>
             </div>
             <div class=" form-group">
                 <button type="submit" id="button-send-ticket">Submit</button>

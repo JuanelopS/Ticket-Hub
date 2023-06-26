@@ -121,6 +121,7 @@ textarea {
 
 .ticket-details-span {
   font-weight: normal;
+  word-wrap: break-word;  /* break long words */
 }
 
 .ticket-list-header {

@@ -5,9 +5,9 @@
         <h2>Login</h2>
         <form action="/login/check" method="POST">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required autofocus>
+            <input type="email" name="email" id="email" maxlength="255" required autofocus>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" required>
+            <input type="password" name="password" id="password" maxlength="30"  required>
             <input class="form-button" type="submit" value="Login">
         </form>
     </div>

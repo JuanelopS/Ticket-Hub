@@ -20,6 +20,8 @@
             echo "<div class='column'>";
             echo "<button class='button button-outline' id='update-state-button'>Update</button>";
             echo "</div>";
+        } else {
+            echo "<button class='button button-outline' id='update-state-button' style='display:none'>Update</button>";
         }
         ?>
     </div>

@@ -11,7 +11,9 @@ let newResponseBox = () => {
   let textarea = document.createElement("textarea");
   textarea.setAttribute("id", "textarea-ticket-response");
   textarea.setAttribute("placeholder", "Write your response here...");
-  textarea.setAttribute("rows", "5");
+  textarea.setAttribute("rows", "6");
+  textarea.setAttribute("style", "height:auto;");
+  textarea.setAttribute("maxlength", "568");
   column.appendChild(textarea);
   ticketResponses.appendChild(row);
 };
