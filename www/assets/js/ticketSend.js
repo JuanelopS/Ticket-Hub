@@ -8,7 +8,7 @@ let formattedDate = () => {
   let month = dateObject.getMonth() + 1;
   let day = dateObject.getDate();
   let hours = dateObject.getHours();
-  let minutes = String(date.getMinutes()).padStart(2, "0"); // Add leading zero
+  let minutes = String(dateObject.getMinutes()).padStart(2, "0"); // Add leading zero
   let seconds = dateObject.getSeconds();
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
@@ -41,5 +41,5 @@ formSendTicket.addEventListener("submit", (e) => {
         console.log("Error", e);
       }
     )
-    .then(() => location.reload());
+    .then(() => window.location = `/user/profile/${data.user}`);
 });
