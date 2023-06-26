@@ -1,6 +1,8 @@
 <div class="row">
     <div class="column">
-        <h3>User list</h3>
+        <div class="user-list-header">
+            <h3><b>USER LIST</b></h3>
+        </div>
         <table>
             <thead>
                 <tr>

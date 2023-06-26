@@ -30,7 +30,8 @@ class AdminController
 
         $data = [
             'tickets' => $tickets->get_tickets(),
-            'unfinished_tickets' => $tickets->get_all_unfinished_tickets()
+            'unfinished_tickets' => $tickets->get_all_unfinished_tickets(),
+            'finished_tickets' => $tickets->get_finished_tickets()
         ];
 
         return $data;

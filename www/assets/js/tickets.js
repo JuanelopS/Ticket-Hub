@@ -80,7 +80,7 @@ updateStateButton.addEventListener("click", () => {
   let select = document.querySelector("#select-state");
 
   let data = {
-    id: ticketId.getAttribute("ticket-id"),
+    id: ticketId.getAttribute("ticket-id"), 
     state: select.value,
   };
 
