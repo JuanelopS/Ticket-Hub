@@ -84,7 +84,7 @@ updateStateButton.addEventListener("click", () => {
     state: select.value,
   };
 
-  /* console.log(data); */
+  console.log(data); 
 
   let url = `/ticket/update_state`;
 

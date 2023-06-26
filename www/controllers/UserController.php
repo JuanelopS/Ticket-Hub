@@ -13,7 +13,7 @@ class UserController
         $user = new User();
         $ticket = new Ticket();
         $tables = true;
-        $tickets = $ticket->get_tickets_by_user($id);
+        $tickets_data['tickets'] = $ticket->get_tickets_by_user($id);
         $user = $user->get($id);
         require_once HEADER;
 

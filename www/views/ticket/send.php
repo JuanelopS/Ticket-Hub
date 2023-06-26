@@ -1,4 +1,4 @@
-<form action="/ticket/exec_send_ticket" method="POST">
+<form action="" method="POST" id="form-send-ticket">
     <div class="row">
         <div class="column column-33 column-offset-33">
             <h3>New Ticket</h3>
@@ -20,6 +20,7 @@
                 <label for="subject">Subject</label>
                 <input type="text" id="subject" name="subject" required>
             </div>
+            <input type="hidden" id="user" name="user" value="<?= $_SESSION['id']?>">
         </div>
     </div>
     <div class="row">
@@ -29,7 +30,7 @@
                 <textarea id="ticket_text" name="ticket_text" rows="8" style="height:auto;" required></textarea>
             </div>
             <div class=" form-group">
-                <button type="submit">Submit</button>
+                <button type="submit" id="button-send-ticket">Submit</button>
                 <a class="button" onclick="history.back()">Back</a>
             </div>
         </div>

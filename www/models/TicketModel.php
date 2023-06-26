@@ -16,7 +16,7 @@ class Ticket extends Database
     protected static string $modification_date;
     protected static int $user_id;
 
-    function __construct($type = 1, $priority = 1, $ticket_text = '', $subject = '', $state = 1, $user_id = 1)
+    function __construct($type = 1, $priority = 1, $ticket_text = '', $subject = '', $state = 1, $user_id = 1, $creation_date = '', $modification_date = '')
     {
         self::$type = $type;
         self::$priority = $priority;
@@ -24,6 +24,8 @@ class Ticket extends Database
         self::$subject = $subject;
         self::$state = $state;
         self::$user_id = $user_id;
+        self::$creation_date = $creation_date;
+        self::$modification_date = $modification_date;
     }
 
     public static function get($data = '')
@@ -148,7 +150,7 @@ class Ticket extends Database
 
     public static function insert()
     {
-        parent::$query = "INSERT INTO tickets (type, priority, subject, ticket_text, state, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        parent::$query = "INSERT INTO tickets (type, priority, subject, ticket_text, state, user_id, creation_date, modification_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         $data = [
             'type' => self::$type,
@@ -157,6 +159,8 @@ class Ticket extends Database
             'ticket_text' => self::$ticket_text,
             'state' => self::$state,
             'user_id' => self::$user_id,
+            'creation_date' => self::$creation_date,
+            'modification_date' => self::$modification_date
         ];
 
         parent::execute_query(array_values($data));
