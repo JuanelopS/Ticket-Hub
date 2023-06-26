@@ -15,7 +15,7 @@ class AdminController
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/admin/dashboard.php";
 
-        $tickets = self::get_all_tickets();
+        $tickets_data = self::get_all_tickets();
         require_once $_SERVER['DOCUMENT_ROOT'] . "/views/ticket/list.php";
 
         $users = self::get_all_users();
@@ -27,7 +27,13 @@ class AdminController
     public function get_all_tickets()
     {
         $tickets = new Ticket();
-        return $tickets->get_tickets();
+
+        $data = [
+            'tickets' => $tickets->get_tickets(),
+            'unfinished_tickets' => $tickets->get_all_unfinished_tickets()
+        ];
+
+        return $data;
     }
 
     public function get_all_users(){

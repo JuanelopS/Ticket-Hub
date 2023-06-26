@@ -122,6 +122,13 @@ class Ticket extends Database
         return $result;
     }
 
+    public static function get_ticket_states(){
+        parent::$query = "SELECT id, ticket_state as state, ticket_state_label as label FROM tickets_state";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return $result;
+    }
+
     public static function get_ticket_responses($id)
     {
         parent::$query = "SELECT 
@@ -196,5 +203,37 @@ class Ticket extends Database
         ];
 
         parent::execute_query(array_values($data));
+    }
+
+    public static function update_ticket_state($id, $state){
+        parent::$query = "UPDATE tickets SET state = ? WHERE id = ?";
+
+        $data = [
+            'state' => $state,
+            'id' => $id
+        ];
+
+        parent::execute_query(array_values($data));
+        
+    }
+
+    public static function get_all_unfinished_tickets(){
+        parent::$query = "SELECT
+                            id, state
+                            FROM tickets
+                            WHERE state = 1 OR state = 2";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return count($result);
+    }
+
+    public static function get_finished_tickets(){
+        parent::$query = "SELECT
+                            id, state
+                            FROM tickets
+                            WHERE state = 3";
+        $result = self::get_results_from_query();
+        parent::close_connection();
+        return count($result);
     }
 }

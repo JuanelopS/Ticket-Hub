@@ -1,6 +1,6 @@
 <div class="row">
     <div class="column">
-        <h3>Ticket list</h3>
+        <h4><b>Ticket list</b> - <span>Pending to solve: <?= $tickets_data['unfinished_tickets']?></span></h4>
         <table>
             <thead>
                 <tr>
@@ -15,12 +15,12 @@
                 </tr>
             </thead>
             <?php
-                foreach ($tickets as $value) {
+                foreach ($tickets_data['tickets'] as $value) {
                     /* TODO: MAKE DAYS SUBSTRACT FOR BETTER SHOW IN VIEW */
                     $creation_date = date_format(date_create($value['creation_date']), 'd/m/Y H:i:s');
                     $modification_date = date_format(date_create($value['modification_date']), 'd/m/Y H:i:s');
                     echo "<tr class='clickable-row' data-href='/ticket/details/" . $value['id']  . "'>";
-                    echo "<td>" . $value['id'] . "</td>";
+                    echo "<td class='clickable-row-id'>" . $value['id'] . "</td>";
                     echo "<td><span class='priority-column'>" . $value['priority'] . "</span></td>";
                     echo "<td>" . $value['type'] . "</td>";
                     echo "<td>" . $value['user'] . "</td>";

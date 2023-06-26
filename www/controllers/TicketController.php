@@ -10,10 +10,12 @@ class TicketController
     public function details($id){
 
         $tables = true;
-        $ticket_response = true;
+        $ticket_js = true;
         $ticket = new Ticket();
         $responses = $ticket->get_ticket_responses($id);
         $data = array_merge(...$ticket->get_ticket_details($id));
+        $states = $ticket->get_ticket_states();
+
         require_once HEADER;
         require_once $_SERVER['DOCUMENT_ROOT'] . '/views/ticket/details.php';
         require_once FOOTER;
@@ -64,6 +66,16 @@ class TicketController
         $response = new Ticket();
         $response->insert_response($ticket_id, $response_text, $user_id);
         $response->update_modificacion_date($ticket_id);
+    }
+
+    public function update_state(){
+        $_post = json_decode(file_get_contents('php://input'), true);
+        $ticket_id = $_post['id'];
+        $state_id = $_post['state'];
+
+        $ticket = new Ticket();
+        $ticket->update_ticket_state($ticket_id, $state_id);
+        $ticket->update_modificacion_date($ticket_id);
     }
 
 }

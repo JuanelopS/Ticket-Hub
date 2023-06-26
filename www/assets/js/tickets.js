@@ -18,7 +18,6 @@ let newResponseBox = () => {
 
 let ticketDetailsButtons = document.querySelector("#ticket-details-buttons");
 
-
 /* REPLACE NEW REPLY FOR SEND BUTTON */
 let newResponseButton = () => {
   let button = document.createElement("button");
@@ -47,7 +46,6 @@ replyButton.addEventListener("click", () => {
   newResponseButton();
 });
 
-
 /* SEND RESPONSE TO BACKEND */
 const sendResponse = () => {
   let data = {
@@ -64,10 +62,45 @@ const sendResponse = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  }).then(
-    (resp) => resp.text(),
-    (e) => {
-      console.log("Error", e);
-    }
-  ) .then(() => location.reload());
+  })
+    .then(
+      (resp) => resp.text(),
+      (e) => {
+        console.log("Error", e);
+      }
+    )
+    .then(() => location.reload());
 };
+
+/* UPDATE STATE IN TICKET DETAILS */
+
+let updateStateButton = document.querySelector("#update-state-button");
+
+updateStateButton.addEventListener("click", () => {
+  let select = document.querySelector("#select-state");
+
+  let data = {
+    id: ticketId.getAttribute("ticket-id"),
+    state: select.value,
+  };
+
+  /* console.log(data); */
+
+  let url = `/ticket/update_state`;
+
+  fetch(url, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(
+      (resp) => resp.text(),
+      (e) => {
+        console.log("Error", e);
+      }
+    )
+    .then(() => location.reload());
+});

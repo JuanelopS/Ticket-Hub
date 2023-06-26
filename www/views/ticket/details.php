@@ -1,19 +1,41 @@
 <div id="ticket-details">
     <div class="row">
-        <div class="column">
-            <div class="ticket-details-title">
-                <b>Ticket details: <?= $data['subject'] . "</b> <span class='priority-column badge-small'>" . $data['priority'] ?></span>
-            </div>
-            <div id="ticket" ticket-id="<?= $data['id'] ?>">
-                <label>User: <span class="ticket-details-span"><?= $data['user'] ?></span></label>
-                <label>Type: <span class="ticket-details-span"><?= $data['type'] ?></span></label>
-                <label>Date: <span class="ticket-details-span"><?= date_format(date_create($data['creation_date']), 'd/m/Y H:i:s') ?></span></label>
-                <label>Ticket message:</label>
-                <span class="ticket-details-span"><?= $data['ticket_text'] ?></span>
-            </div>
+        <div class="column column-60 ticket-details-title">
+            <b>Ticket details: <?= $data['subject'] . "</b> <span class='priority-column badge-small'>" . $data['priority'] ?></span>
+        </div>
+        <?php
+        if($_SESSION['role'] == 1){
+            echo "<div class='column'>";
+            echo "<select id='select-state'>";
+            $current_state = $data['state'];
+            foreach ($states as $key => $value) {
+                if ($value['state'] == $current_state) {
+                    echo "<option value='" . $value['id'] . "' selected>" . $value['label'] . "</option>";
+                } else {
+                echo "<option value='" . $value['id'] . "'>" . $value['label'] . "</option>";
+                }
+            }
+            echo "</select>";
+            echo "</div>";
+            echo "<div class='column'>";
+            echo "<button class='button button-outline' id='update-state-button'>Update</button>";
+            echo "</div>";
+        }
+        ?>
+</div>
+
+<div class="row">
+    <div class="column">
+        <div id="ticket" ticket-id="<?= $data['id'] ?>">
+            <label>User: <span class="ticket-details-span"><?= $data['user'] ?></span></label>
+            <label>Type: <span class="ticket-details-span"><?= $data['type'] ?></span></label>
+            <label>Date: <span class="ticket-details-span"><?= date_format(date_create($data['creation_date']), 'd/m/Y H:i:s') ?></span></label>
+            <label>Ticket message:</label>
+            <span class="ticket-details-span"><?= $data['ticket_text'] ?></span>
         </div>
     </div>
 </div>
+
 <div id="ticket-responses">
     <?php
     if (isset($responses) && !empty($responses)) {

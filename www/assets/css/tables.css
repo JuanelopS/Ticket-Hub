@@ -10,6 +10,15 @@ td {
 
 .clickable-row {
   cursor: pointer;
+  
+}
+
+.clickable-row:hover {
+  background-color: #9b4dca20;
+}
+
+.clickable-row-id {
+  text-align: center;
 }
 
 .form-button {
