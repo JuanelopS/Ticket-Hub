@@ -130,3 +130,6 @@ textarea {
   justify-content: space-between;
 }
 
+.user-list-options {
+  text-align: right;
+}

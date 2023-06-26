@@ -13,14 +13,14 @@
             <table>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>priority</th>
-                        <th>type</th>
-                        <th>user</th>
-                        <th>subject</th>
-                        <th>creation_date</th>
-                        <th>modification_date</th>
-                        <th>state</th>
+                        <th class='clickable-row-id'>id</th>
+                        <th>Priority</th>
+                        <th>Type</th>
+                        <th>User</th>
+                        <th>Subject</th>
+                        <th>Creation date</th>
+                        <th>Last Modification</th>
+                        <th>State</th>
                     </tr>
                 </thead>
                 <?php

@@ -8,17 +8,18 @@
                 <tr>
                     <th></th>
                     <th>id</th>
-                    <th>email</th>
-                    <th>name</th>
-                    <th>surname</th>
-                    <th>register_date</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Register Date</th>
+                    <th class="td-user-tickets">Tickets</th>
                 </tr>
             </thead>
             <?php
             foreach ($users as $value) {
                 $date = date_format(date_create($value['register_date']), 'd/m/Y H:i:s');
                 echo "<tr>";
-                echo "<td><i del='" . $value['id'] .  "' class='btn_delete feather-16' data-feather='x-octagon'></i>
+                echo "<td class='user-list-options'><i del='" . $value['id'] .  "' class='btn_delete feather-16' data-feather='x-octagon'></i>
                       <a href='/user/update/" . $value['id'] . "'><i upd='" . $value['id'] .  "' class='btn_update feather-16' data-feather='edit'></i></a></td>
                 ";
                 echo "<td>" . $value['id'] . "</td>";
@@ -26,6 +27,7 @@
                 echo "<td>" . $value['name'] . "</td>";
                 echo "<td>" . $value['surname'] . "</td>";
                 echo "<td>" . $date . "</td>";
+                echo "<td class='td-user-tickets-number'>" . count(self::get_tickets_by_user($value['id'])) . "</td>"; /* TODO: THIS IS VERY VERY UGLY... */
                 echo "</tr>";
             }
 

@@ -41,4 +41,9 @@ class AdminController
         $users = new User();
         return $users->get();
     }
+
+    public function get_tickets_by_user($id){
+        $tickets = new Ticket();
+        return $tickets->get_tickets_by_user($id);
+    }
 }
