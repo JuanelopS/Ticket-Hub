@@ -7,8 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 class TicketController
 {
 
-    public function details($id){
-
+    public function details($id)
+    {
         $tables = true;
         $ticket_js = true;
         $ticket = new Ticket();
@@ -32,7 +32,8 @@ class TicketController
         require_once FOOTER;
     }
 
-    public function ticket_list(){
+    public function ticket_list()
+    {
         $ticket = new Ticket();
         return $ticket->get();
     }
@@ -56,8 +57,8 @@ class TicketController
         }
     }
 
-    public function response(){
-
+    public function response()
+    {
         $_post = json_decode(file_get_contents('php://input'), true);
         $ticket_id = $_post['ticket_id'];
         $response_text = $_post['response_text'];
@@ -68,14 +69,14 @@ class TicketController
         $response->update_modificacion_date($ticket_id);
     }
 
-    public function update_state(){
-        $_post = json_decode(file_get_contents('php://input'), true);
-        $ticket_id = $_post['id'];
-        $state_id = $_post['state'];
+    public function update_state()
+    {
+        $_put = json_decode(file_get_contents('php://input'), true);
+        $ticket_id = $_put['id'];
+        $state_id = $_put['state'];
 
         $ticket = new Ticket();
         $ticket->update_ticket_state($ticket_id, $state_id);
         $ticket->update_modificacion_date($ticket_id);
     }
-
 }
