@@ -179,16 +179,17 @@ class Ticket extends Database
         parent::execute_query(array_values($data_update));
     }
 
-    public static function insert_response($ticket_id, $response_text, $user_id)
+    public static function insert_response($ticket_id, $response_text, $user_id, $response_date)
     {
         settype($ticket_id, 'int');
         settype($user_id, 'int');
-        parent::$query = "INSERT INTO tickets_responses (message, ticket_id, user_id) VALUES (?, ?, ?)";
+        parent::$query = "INSERT INTO tickets_responses (message, ticket_id, user_id, message_date) VALUES (?, ?, ?, ?)";
 
         $data = [
             'message' => $response_text,
             'ticket_id' => $ticket_id,
             'user_id' => $user_id,
+            'message_date' => $response_date
         ];
 
         parent::execute_query(array_values($data));
@@ -196,6 +197,7 @@ class Ticket extends Database
 
     public static function update_modificacion_date($id)
     {
+
         require_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/dates.php";
         $date = new Date();
 
@@ -209,11 +211,12 @@ class Ticket extends Database
         parent::execute_query(array_values($data));
     }
 
-    public static function update_ticket_state($id, $state){
-        parent::$query = "UPDATE tickets SET state = ? WHERE id = ?";
+    public static function update_ticket_state($id, $state, $modification_date){
+        parent::$query = "UPDATE tickets SET state = ?, modification_date = ? WHERE id = ?";
 
         $data = [
             'state' => $state,
+            'modification_date' => $modification_date,
             'id' => $id
         ];
 

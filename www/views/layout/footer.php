@@ -41,9 +41,6 @@
 <?php if (isset($ticket_js)) : ?>
     <script src='../../assets/js/tickets.js'></script>
 <?php endif; ?>
-<?php if (isset($ticket_send)) : ?>
-    <script src='../../assets/js/ticketSend.js'></script>
-<?php endif; ?>
 <?php if (isset($password_js)) : ?>
     <script src='../../assets/js/passwords.js'></script>
 <?php endif; ?>

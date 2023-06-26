@@ -32,7 +32,7 @@ class TicketController
     {
 
         $ticket = new Ticket();
-        $ticket_send = true;
+        $ticket_js = true;
         $ticket_types = $ticket->get_ticket_types();
         $ticket_priorities = $ticket->get_ticket_priorities();
 
@@ -66,11 +66,11 @@ class TicketController
         $_post = json_decode(file_get_contents('php://input'), true);
         $ticket_id = $_post['ticket_id'];
         $response_text = $_post['response_text'];
+        $response_date = $_post['response_date'];
         $user_id = $_SESSION['id'];
 
         $response = new Ticket();
-        $response->insert_response($ticket_id, $response_text, $user_id);
-        $response->update_modificacion_date($ticket_id);
+        $response->insert_response($ticket_id, $response_text, $user_id, $response_date);
     }
 
     public function update_state()
@@ -78,9 +78,9 @@ class TicketController
         $_put = json_decode(file_get_contents('php://input'), true);
         $ticket_id = $_put['id'];
         $state_id = $_put['state'];
+        $modification_date = $_put['modification_date'];
 
         $ticket = new Ticket();
-        $ticket->update_ticket_state($ticket_id, $state_id);
-        $ticket->update_modificacion_date($ticket_id);
+        $ticket->update_ticket_state($ticket_id, $state_id, $modification_date);
     }
 }

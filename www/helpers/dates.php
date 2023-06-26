@@ -1,18 +1,22 @@
 <?php
 
-class Date {
+class Date
+{
 
     protected $date;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->date = new DateTime();
     }
 
-    public function get_date() {
+    public function get_date()
+    {
         return $this->date->format('Y-m-d H:i:s');
     }
 
-    public function get_format_date() {
+    public function get_format_date()
+    {
         return $this->date->format('d-m-Y H:i:s');
     }
 
@@ -22,7 +26,8 @@ class Date {
      * @param string $date
      * @return string
      */
-    public function calculate_days_ago($date) {
+    public function calculate_days_ago($date)
+    {
 
         $this->date->setTimestamp(strtotime($date));
         $now = new DateTime();
