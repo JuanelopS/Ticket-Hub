@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
     <?php if (isset($tables)) : ?>
-    <link rel="stylesheet" href="../../assets/css/tables.css">
+        <link rel="stylesheet" href="../../assets/css/tables.css">
     <?php endif; ?>
     <!-- Feather icons -->
     <script src="../../assets/js/feather.min.js"></script>
@@ -39,7 +39,9 @@
                         if (isset($_SESSION) && array_key_exists('name', $_SESSION)) {
 
                             echo "
-                                        <a class='button button-outline' href='/login/logout'>Logout</a>
+                                        <i class='btn_delete feather-32' data-feather='log-out'>
+                                            <a href='/login/logout'>Logout</a>
+                                        </i>
                                      ";
                         } else {
                             echo

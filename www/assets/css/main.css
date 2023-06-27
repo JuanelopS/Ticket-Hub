@@ -133,3 +133,35 @@ textarea {
 .user-list-options {
   text-align: right;
 }
+
+.feather {
+  cursor: pointer;
+}
+
+.feather-x-octagon {
+  color: red;
+}
+
+.feather-edit, .feather-log-out {
+  color: #9b4dca;
+}
+
+.feather-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.feather-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.feather-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.feather-48 {
+  width: 48px;
+  height: 48px;
+}
