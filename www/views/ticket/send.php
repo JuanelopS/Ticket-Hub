@@ -27,11 +27,17 @@
         <div class="column column-50 column-offset-33">
             <div class="form-group">
                 <label for="ticket_text">Message</label>
-                <textarea id="ticket_text" name="ticket_text" rows="8" style="height:auto;" maxlength="568"  required></textarea>
+                <textarea id="ticket_text" name="ticket_text" rows="8" style="height:auto;" maxlength="568" required></textarea>
             </div>
             <div class=" form-group">
-                <button type="submit" id="button-send-ticket">Submit</button>
-                <a class="button" onclick="history.back()">Back</a>
+                <button class="button" type="submit" id="button-send-ticket">
+                    <span class="button-text" style="vertical-align:middle;">Submit</span>
+                    <i class="feather-16 icon-button" data-feather="send"></i>
+                </button>
+                <a class="button" onclick="history.back()">
+                    <span class="button-text" style="vertical-align: middle;">Back</span>
+                    <i class="feather-16 icon-button" data-feather="skip-back"></i>
+                </a>
             </div>
         </div>
     </div>
