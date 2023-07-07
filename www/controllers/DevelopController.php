@@ -47,12 +47,15 @@ class DevelopController
     public function ticket_list_json(){
         $ticket = new Ticket();
         $tickets = $ticket->get();
+        header('Content-Type: application/json');
         echo json_encode($tickets);
     }
 
     public function ticket_list(){
-        $tickets_js = true;
+        
         require_once HEADER;
+        
         require_once FOOTER;
+        echo "<script src='../assets/js/develop.js'></script>";
     }
 }
