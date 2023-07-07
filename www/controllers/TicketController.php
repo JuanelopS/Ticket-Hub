@@ -9,7 +9,7 @@ class TicketController
 
     public function details($id)
     {
-        $tables = true;
+        // $tables = true;
         $ticket_js = true;
         $ticket = new Ticket();
         $responses = $ticket->get_ticket_responses($id);
@@ -82,6 +82,14 @@ class TicketController
 
         $ticket = new Ticket();
         $ticket->update_ticket_state($ticket_id, $state_id, $modification_date);
+    }
+
+    public function ticket_list_json()
+    {
+        $ticket = new Ticket();
+        $tickets = $ticket->get_tickets();
+        header('Content-Type: application/json');
+        echo json_encode($tickets);
     }
 
 }

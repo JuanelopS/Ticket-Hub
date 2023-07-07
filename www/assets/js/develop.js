@@ -1,6 +1,6 @@
 let url = "/develop/ticket_list_json";
 
-async function getTicketList() {
+async function getTicketList(url) {
   let response = await fetch(url);
   let data = await response.json();
   return data;
@@ -16,6 +16,7 @@ function createTicketList() {
   getTicketList().then((tickets) => {
     
     tickets.map((ticket) => {
+
       const ticketId = document.createElement("p");
       ticketId.classList.add("ticket-id");
       ticketId.textContent = `Ticket ID: ${ticket.id}`;

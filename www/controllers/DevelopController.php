@@ -46,7 +46,7 @@ class DevelopController
 
     public function ticket_list_json(){
         $ticket = new Ticket();
-        $tickets = $ticket->get();
+        $tickets = $ticket->get_tickets();
         header('Content-Type: application/json');
         echo json_encode($tickets);
     }

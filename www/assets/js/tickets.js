@@ -126,6 +126,8 @@ updateStateButton.addEventListener("click", () => {
 let sendTicketButton = document.querySelector("#button-send-ticket");
 let formSendTicket = document.querySelector("#form-send-ticket");
 
+/* FIXME: CONSOLE ERROR IN TICKET DETAILS ? */
+
 formSendTicket.addEventListener("submit", (e) => {
   e.preventDefault();
 
