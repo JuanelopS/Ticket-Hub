@@ -83,4 +83,5 @@ class TicketController
         $ticket = new Ticket();
         $ticket->update_ticket_state($ticket_id, $state_id, $modification_date);
     }
+
 }

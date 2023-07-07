@@ -1,26 +1,14 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/TicketModel.php";
 class DevelopController
 {
 
     public function __construct()
     {
     }
-
-    public function aa(){
-        $data = [[
-            'name' => 'Juan',
-            'surname' => 'Gavira',
-            'age' => 40,
-            'data' => [1, 2, 3, 4, 5]
-        ]];
-
-        $flat_array = array_merge(...$data);
-
-        var_dump($flat_array);
-    }
-
-
 
     public function password_hash_cost()
     {
@@ -54,5 +42,17 @@ class DevelopController
         echo $date->get_date();
         echo "<br>";
         echo $date->calculate_days_ago('2023-06-23 14:59:59');
+    }
+
+    public function ticket_list_json(){
+        $ticket = new Ticket();
+        $tickets = $ticket->get();
+        echo json_encode($tickets);
+    }
+
+    public function ticket_list(){
+        $tickets_js = true;
+        require_once HEADER;
+        require_once FOOTER;
     }
 }

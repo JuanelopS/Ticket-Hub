@@ -1,6 +1,5 @@
 <?php
 
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/SessionModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/TicketModel.php";
@@ -24,7 +23,7 @@ class AdminController
         require_once FOOTER;
     }
 
-    public function get_all_tickets()
+    private function get_all_tickets()
     {
         $tickets = new Ticket();
 
@@ -37,12 +36,12 @@ class AdminController
         return $data;
     }
 
-    public function get_all_users(){
+    private function get_all_users(){
         $users = new User();
         return $users->get();
     }
 
-    public function get_tickets_by_user($id){
+    private function get_tickets_by_user($id){
         $tickets = new Ticket();
         return $tickets->get_tickets_by_user($id);
     }
