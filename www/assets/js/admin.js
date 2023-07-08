@@ -65,6 +65,7 @@ function ticketListStructure(ticket) {
   const ticketState = document.createElement("td");
   ticketState.classList.add("ticket-state");
   ticketState.textContent = `${ticket.state}`;
+  ticketState.title = `${ticket.state_label}`;
   ticketRow.appendChild(ticketState);
 
   if (ticketList) {
@@ -74,26 +75,39 @@ function ticketListStructure(ticket) {
 
 /* CREATE TICKET LIST */
 
-function createTicketList(url, state = "pending") {
+function createTicketList(url, state = "pending", index = 0) {
   getTicketList(url).then((tickets) => {
     const ticketList = document.querySelector(".ticket-list");
+
+    let totalTickets = tickets.length;
 
     switch (state) {
       case "pending":
         tickets
           .filter((ticket) => ticket.state != "done")
+          .slice(index, index + 10)
           .map((ticket) => ticketListStructure(ticket));
+        totalTickets = tickets.filter(
+          (ticket) => ticket.state != "done"
+        ).length;
         break;
       case "done":
         tickets
           .filter((ticket) => ticket.state == "done")
+          .slice(index, index + 10)
           .map((ticket) => ticketListStructure(ticket));
+        totalTickets = tickets.filter(
+          (ticket) => ticket.state == "done"
+        ).length;
         break;
       default:
-        tickets.map((ticket) => ticketListStructure(ticket));
+        tickets
+          .slice(index, index + 10)
+          .map((ticket) => ticketListStructure(ticket));
     }
     priorityBadges();
     clickableRow();
+    listButtons(index, state, totalTickets);
   });
 }
 
@@ -103,20 +117,26 @@ let allTickets = document.querySelector(".all-tickets");
 let pendingTickets = document.querySelector(".pending-tickets");
 let finishedTickets = document.querySelector(".finished-tickets");
 
-allTickets.addEventListener("click", () => {
-  ticketList.innerHTML = "";
-  createTicketList(`/ticket/ticket_list_json`, "all");
-});
+if (allTickets) {
+  allTickets.addEventListener("click", () => {
+    ticketList.innerHTML = "";
+    createTicketList(`/ticket/ticket_list_json`, "all");
+  });
+}
 
-pendingTickets.addEventListener("click", () => {
-  ticketList.innerHTML = "";
-  createTicketList(`/ticket/ticket_list_json`, "pending");
-});
+if (pendingTickets) {
+  pendingTickets.addEventListener("click", () => {
+    ticketList.innerHTML = "";
+    createTicketList(`/ticket/ticket_list_json`, "pending");
+  });
+}
 
-finishedTickets.addEventListener("click", () => {
-  ticketList.innerHTML = "";
-  createTicketList(`/ticket/ticket_list_json`, "done");
-});
+if (finishedTickets) {
+  finishedTickets.addEventListener("click", () => {
+    ticketList.innerHTML = "";
+    createTicketList(`/ticket/ticket_list_json`, "done");
+  });
+}
 
 /* ACCESS TO TICKET DETAILS CLICKING ROW */
 
@@ -203,6 +223,56 @@ let dataId = ticketList.getAttribute("data-id");
 let userId = ticketList.getAttribute("user-id");
 
 createTicketList(`/ticket/ticket_list_json`);
+
+/* LIST BUTTONS */
+
+function listButtons(index, state, total) {
+  let buttonsTicketList = document.querySelector(".buttons-ticket-list");
+  buttonsTicketList.innerHTML = "";
+
+  let column1 = document.createElement("div");
+  column1.classList.add("column");
+  let column2 = document.createElement("div");
+  column2.classList.add("column");
+  let column3 = document.createElement("div");
+  column3.classList.add("column");
+
+  buttonsTicketList.appendChild(column1);
+  buttonsTicketList.appendChild(column2);
+  buttonsTicketList.appendChild(column3);
+
+  column2.style.textAlign = "center";
+
+  let buttonPrevious = document.createElement("button");
+  buttonPrevious.classList.add("button-large", "button-clear", "btn-previous");
+  if (index == 0) {
+    buttonPrevious.disabled = true;
+  }
+  buttonPrevious.textContent = "PREV";
+  buttonPrevious.style.fontSize = "2rem";
+  column2.appendChild(buttonPrevious);
+
+  let buttonNext = document.createElement("button");
+  buttonNext.classList.add("button-large", "button-clear", "btn-next");
+  if (index + 10 >= total) {
+    buttonNext.disabled = true;
+  }
+  buttonNext.textContent = "NEXT";
+  buttonNext.style.fontSize = "2rem";
+  column2.appendChild(buttonNext);
+
+  buttonNext.addEventListener("click", () => {
+    index += 10;
+    ticketList.innerHTML = "";
+    createTicketList(`/ticket/ticket_list_json`, state, index);
+  });
+
+  buttonPrevious.addEventListener("click", () => {
+    index -= 10;
+    ticketList.innerHTML = "";
+    createTicketList(`/ticket/ticket_list_json`, state, index);
+  });
+}
 
 /* ORDER TICKET LIST */
 

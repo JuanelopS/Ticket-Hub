@@ -32,11 +32,6 @@
         <?php endif; ?>
     </div>
 </div>
-<div class="row">
-    <div class="column"></div>
-    <div class="column" style="text-align: center;">
-        <button class="button-large button-outline">PREV</button>
-        <button class="button-large button-outline">NEXT</button>
-    </div>
-    <div class="column"></div>
+<div class="row buttons-ticket-list">
+    
 </div>

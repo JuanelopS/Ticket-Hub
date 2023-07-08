@@ -74,7 +74,8 @@ class Ticket extends Database
                             tickets.subject AS subject,
                             tickets.creation_date AS creation_date,
                             tickets.modification_date AS modification_date,
-                            tickets_state.ticket_state AS state
+                            tickets_state.ticket_state AS state,
+                            tickets_state.ticket_state_label AS state_label
                             FROM tickets
                             INNER JOIN users ON tickets.user_id = users.id
                             INNER JOIN tickets_type ON tickets.type = tickets_type.id
