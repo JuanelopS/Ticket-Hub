@@ -2,16 +2,16 @@ let ticketId = document.querySelector("#ticket");
 let ticketResponses = document.querySelector("#ticket-responses");
 
 /* JAVASCRIPT DATE TO MYSQL FORMAT */
-let formattedDate = () => {
+let formatSendDate = () => {
   let dateObject = new Date();
   let year = dateObject.getFullYear();
   let month = String(dateObject.getMonth() + 1).padStart(2, "0");
-  let day = dateObject.getDate();
+  let day = String(dateObject.getDate()).padStart(2, "0");
   let hours = dateObject.getHours();
   let minutes = String(dateObject.getMinutes()).padStart(2, "0"); // Add leading zero
-  let seconds = dateObject.getSeconds();
+  let seconds = String(dateObject.getSeconds()).padStart(2, "0");
 
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`; // YYYY-MM-DD HH:MM:SS
 };
 
 /* CREATE A NEW RESPONSE BOX  */
@@ -68,9 +68,10 @@ const sendResponse = () => {
   let data = {
     ticket_id: ticketId.getAttribute("ticket-id"),
     response_text: document.querySelector("#textarea-ticket-response").value,
-    response_date: formattedDate(),
+    response_date: formatSendDate(),
   };
 
+  console.log(data);
   let url = `/ticket/response`;
 
   fetch(url, {
@@ -80,14 +81,13 @@ const sendResponse = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  })
-    .then(
-      (resp) => resp.text(),
-      (e) => {
-        console.log("Error", e);
-      }
-    )
-    .then(() => location.reload());
+  }).then(
+    (resp) => resp.text(),
+    (e) => {
+      console.log("Error", e);
+    }
+  )
+  .then(() => location.reload());
 };
 
 /* UPDATE STATE IN TICKET DETAILS */
@@ -101,7 +101,7 @@ if (updateStateButton) {
     let data = {
       id: ticketId.getAttribute("ticket-id"),
       state: select.value,
-      modification_date: formattedDate(),
+      modification_date: formatSendDate(),
     };
 
     console.log(data);
@@ -140,7 +140,7 @@ if (formSendTicket) {
       priority: document.querySelector("#priority").value,
       subject: document.querySelector("#subject").value,
       ticket_text: document.querySelector("#ticket_text").value,
-      creation_date: formattedDate(),
+      creation_date: formatSendDate(),
     };
 
     let url = "/ticket/exec_send_ticket";

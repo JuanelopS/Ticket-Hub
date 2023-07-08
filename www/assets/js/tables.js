@@ -1,16 +1,15 @@
-/* JAVASCRIPT DATE TO MYSQL FORMAT */
+/* SHOW DATE IN DD/MM/YYYY HH:MM:SS FORMAT */
 
 let formattedDate = (date) => {
-
   let dateObject = new Date(date);
   let year = dateObject.getFullYear();
-  let month = dateObject.getMonth() + 1;
-  let day = dateObject.getDate();
+  let month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  let day = String(dateObject.getDate()).padStart(2, "0");
   let hours = dateObject.getHours();
   let minutes = String(dateObject.getMinutes()).padStart(2, "0"); // Add leading zero
-  let seconds = dateObject.getSeconds();
+  let seconds = String(dateObject.getSeconds()).padStart(2, "0"); 
 
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
 };
 
 /* GET TICKET LIST */
@@ -74,15 +73,14 @@ function createTicketList(url) {
       ticketState.textContent = `${ticket.state}`;
       ticketRow.appendChild(ticketState);
 
-      if(ticketList) {
-      ticketList.appendChild(ticketRow);
+      if (ticketList) {
+        ticketList.appendChild(ticketRow);
       }
     });
 
     priorityBadges();
     clickableRow();
   });
-
 }
 
 /* ACCESS TO TICKET DETAILS CLICKING ROW */
@@ -99,8 +97,7 @@ function clickableRow() {
 
 /* TABLE BADGES */
 
-function priorityBadges(){
-
+function priorityBadges() {
   let priorityColumn = document.querySelectorAll(".ticket-priority");
 
   priorityColumn.forEach((element) => {
@@ -120,7 +117,6 @@ function priorityBadges(){
         break;
     }
   });
-
 }
 
 let profile = document.querySelector(".profile");
@@ -169,4 +165,3 @@ btnUpdate.forEach((element) => {
     console.log(e.currentTarget.attributes["upd"].value);
   });
 });
-

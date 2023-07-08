@@ -193,9 +193,10 @@ class Ticket extends Database
         ];
 
         parent::execute_query(array_values($data));
+        self::update_modificacion_date($ticket_id, $response_date);
     }
 
-    public static function update_modificacion_date($id)
+    public static function update_modificacion_date($id, $modification_date)
     {
 
         require_once $_SERVER['DOCUMENT_ROOT'] . "/helpers/dates.php";
@@ -204,7 +205,7 @@ class Ticket extends Database
         parent::$query = "UPDATE tickets SET modification_date = ? WHERE id = ?";
 
         $data = [
-            'modification_date' => $date->get_date(),
+            'modification_date' => $modification_date,
             'id' => $id
         ];
 
