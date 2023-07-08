@@ -90,13 +90,15 @@ class TicketController
         header('Content-Type: application/json');
         echo json_encode($tickets);
     }
-    
+
     public function ticket_list_json_user($user_id)
     {
         $ticket = new Ticket();
         $tickets = $ticket->get_tickets_by_user($user_id);
+        if($_SESSION['role'] == 1){
+            $tickets = $ticket->get_tickets();
+        }
         header('Content-Type: application/json');
         echo json_encode($tickets);
     }
-
 }

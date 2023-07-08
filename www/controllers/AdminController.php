@@ -17,7 +17,7 @@ class AdminController
             if($_SESSION['role'] != '1'){
                 
             }
-            $tables = true;
+            // $tables = true;
             $admin_js = true;
             require_once HEADER;
             require_once $_SERVER['DOCUMENT_ROOT'] . "/views/admin/dashboard.php";

@@ -14,7 +14,7 @@
     <!-- CSS  -->
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
-    <?php if (isset($tables)) : ?>
+    <?php if (isset($tables) || isset($admin_js) || isset($ticket_js)) : ?>
         <link rel="stylesheet" href="../../assets/css/tables.css">
     <?php endif; ?>
     <!-- Feather icons -->

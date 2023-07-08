@@ -1,7 +1,7 @@
 <div id="ticket-details">
     <div class="row">
         <div class="column column-60 ticket-details-title">
-            <b>Ticket details: <?= $data['subject'] . "</b> <span class='priority-column badge-small'>" . $data['priority'] ?></span>
+            <b>Ticket details: <?= $data['subject'] . "</b> <span class='priority-column badge-small badge-" . strtolower($data['priority']) . "'>" . $data['priority'] ?></span>
         </div>
         <?php
         if ($_SESSION['role'] == 1) {
