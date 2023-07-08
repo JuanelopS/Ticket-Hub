@@ -26,7 +26,7 @@ class UserController
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/profile.php";
                 require_once $_SERVER['DOCUMENT_ROOT'] . "/views/ticket/list.php";
             } else {
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/404.php";
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/views/pages/403.php";
             }
         }
         

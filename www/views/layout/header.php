@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <!-- CSS Reset -->
-    <link rel="stylesheet" href="../../node_modules/milligram/normalize.css/normalize.css">
+    <link rel="stylesheet" href="../../node_modules/normalize.css/normalize.css">
     <!-- Milligram CSS -->
     <link rel="stylesheet" href="../../node_modules/milligram/dist/milligram.css">
     <!-- CSS  -->

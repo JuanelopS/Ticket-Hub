@@ -1,4 +1,4 @@
-<div class="row">
+<div data-id="<?= $user['id'] ?>" class="row profile">
     <div class="column column-80">
         <h3>Welcome <b><?= ucfirst($user['name']) ?></b></h3>
     </div>

@@ -10,17 +10,26 @@ class AdminController
     public function dashboard()
     {
         session_start();
-        $tables = true;
-        require_once HEADER;
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/admin/dashboard.php";
+        if (!isset($_SESSION['role'])) {
+            header('Location: /');
+        } else {
 
-        $tickets_data = self::get_all_tickets();
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/ticket/list.php";
+            if($_SESSION['role'] != '1'){
+                
+            }
+            $tables = true;
+            $admin_js = true;
+            require_once HEADER;
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/admin/dashboard.php";
 
-        $users = self::get_all_users();
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/list.php";
+            $tickets_data = self::get_all_tickets();
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/ticket/list.php";
 
-        require_once FOOTER;
+            $users = self::get_all_users();
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/views/user/list.php";
+
+            require_once FOOTER;
+        }
     }
 
     private function get_all_tickets()
@@ -36,12 +45,14 @@ class AdminController
         return $data;
     }
 
-    private function get_all_users(){
+    private function get_all_users()
+    {
         $users = new User();
         return $users->get();
     }
 
-    private function get_tickets_by_user($id){
+    private function get_tickets_by_user($id)
+    {
         $tickets = new Ticket();
         return $tickets->get_tickets_by_user($id);
     }

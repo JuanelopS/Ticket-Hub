@@ -30,7 +30,6 @@ class TicketController
 
     public function send()
     {
-
         $ticket = new Ticket();
         $ticket_js = true;
         $ticket_types = $ticket->get_ticket_types();
@@ -88,6 +87,14 @@ class TicketController
     {
         $ticket = new Ticket();
         $tickets = $ticket->get_tickets();
+        header('Content-Type: application/json');
+        echo json_encode($tickets);
+    }
+    
+    public function ticket_list_json_user($user_id)
+    {
+        $ticket = new Ticket();
+        $tickets = $ticket->get_tickets_by_user($user_id);
         header('Content-Type: application/json');
         echo json_encode($tickets);
     }

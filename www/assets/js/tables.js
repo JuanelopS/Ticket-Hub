@@ -4,55 +4,14 @@ let formattedDate = (date) => {
 
   let dateObject = new Date(date);
   let year = dateObject.getFullYear();
-  let month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  let month = dateObject.getMonth() + 1;
   let day = dateObject.getDate();
   let hours = dateObject.getHours();
   let minutes = String(dateObject.getMinutes()).padStart(2, "0"); // Add leading zero
   let seconds = dateObject.getSeconds();
 
-  return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
-
-/* BUTTONS EDIT / DELET FROM USER LIST */
-
-let btnDelete = document.querySelectorAll(".btn_delete");
-let btnUpdate = document.querySelectorAll(".btn_update");
-
-const deleteItem = (id) => {
-  let data = {
-    item: id,
-  };
-
-  let url = `/user/delete`;
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then(
-      (resp) => resp.text(),
-      (e) => {
-        console.log("Error", e);
-      }
-    )
-    .then(() => location.reload());
-};
-
-btnDelete.forEach((element) => {
-  element.addEventListener("click", (e) => {
-    deleteItem(e.currentTarget.attributes["del"].value);
-  });
-});
-
-btnUpdate.forEach((element) => {
-  element.addEventListener("click", (e) => {
-    console.log(e.currentTarget.attributes["upd"].value);
-  });
-});
 
 /* GET TICKET LIST */
 
@@ -68,7 +27,7 @@ function createTicketList(url) {
   getTicketList(url).then((tickets) => {
     const ticketList = document.querySelector(".ticket-list");
 
-    console.log(tickets.length);
+    // console.log(tickets.length);
 
     tickets.map((ticket) => {
       const ticketRow = document.createElement("tr");
@@ -107,7 +66,7 @@ function createTicketList(url) {
 
       const ticketModification = document.createElement("td");
       ticketModification.classList.add("ticket-modification");
-      ticketModification.textContent = `${ticket.modification_date}`;
+      ticketModification.textContent = formattedDate(ticket.modification_date);
       ticketRow.appendChild(ticketModification);
 
       const ticketState = document.createElement("td");
@@ -115,7 +74,9 @@ function createTicketList(url) {
       ticketState.textContent = `${ticket.state}`;
       ticketRow.appendChild(ticketState);
 
+      if(ticketList) {
       ticketList.appendChild(ticketRow);
+      }
     });
 
     priorityBadges();
@@ -162,4 +123,50 @@ function priorityBadges(){
 
 }
 
-createTicketList("/ticket/ticket_list_json");
+let profile = document.querySelector(".profile");
+
+let userId = profile.getAttribute("data-id");
+
+createTicketList(`/ticket/ticket_list_json_user/${userId}`);
+
+/* BUTTONS EDIT / DELET FROM USER LIST */
+
+let btnDelete = document.querySelectorAll(".btn_delete");
+let btnUpdate = document.querySelectorAll(".btn_update");
+
+const deleteItem = (id) => {
+  let data = {
+    item: id,
+  };
+
+  let url = `/user/delete`;
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then(
+      (resp) => resp.text(),
+      (e) => {
+        console.log("Error", e);
+      }
+    )
+    .then(() => location.reload());
+};
+
+btnDelete.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    deleteItem(e.currentTarget.attributes["del"].value);
+  });
+});
+
+btnUpdate.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    console.log(e.currentTarget.attributes["upd"].value);
+  });
+});
+

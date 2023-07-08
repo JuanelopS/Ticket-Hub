@@ -15,7 +15,7 @@ changePasswordButton.addEventListener('click', e => {
         alert('Passwords do not match');
 
     } else {
-        
+        /* TODO: ALL */
     }
 
 });

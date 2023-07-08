@@ -5,7 +5,7 @@ let ticketResponses = document.querySelector("#ticket-responses");
 let formattedDate = () => {
   let dateObject = new Date();
   let year = dateObject.getFullYear();
-  let month = String(dateObject.getMonth() + 1).padStart(2, "0"); 
+  let month = String(dateObject.getMonth() + 1).padStart(2, "0");
   let day = dateObject.getDate();
   let hours = dateObject.getHours();
   let minutes = String(dateObject.getMinutes()).padStart(2, "0"); // Add leading zero
@@ -13,7 +13,6 @@ let formattedDate = () => {
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
-
 
 /* CREATE A NEW RESPONSE BOX  */
 let newResponseBox = () => {
@@ -55,12 +54,14 @@ let newResponseButton = () => {
 
 let replyButton = document.querySelector("#button-reply-ticket");
 
-replyButton.addEventListener("click", () => {
-  newResponseBox();
-  let replyButton = document.querySelector("#button-reply-ticket");
-  replyButton.style.display = "none";
-  newResponseButton();
-});
+if (replyButton) {
+  replyButton.addEventListener("click", () => {
+    newResponseBox();
+    let replyButton = document.querySelector("#button-reply-ticket");
+    replyButton.style.display = "none";
+    newResponseButton();
+  });
+}
 
 /* SEND RESPONSE TO BACKEND */
 const sendResponse = () => {
@@ -93,67 +94,70 @@ const sendResponse = () => {
 
 let updateStateButton = document.querySelector("#update-state-button");
 
-updateStateButton.addEventListener("click", () => {
-  let select = document.querySelector("#select-state");
+if (updateStateButton) {
+  updateStateButton.addEventListener("click", () => {
+    let select = document.querySelector("#select-state");
 
-  let data = {
-    id: ticketId.getAttribute("ticket-id"), 
-    state: select.value,
-    modification_date: formattedDate()
-  };
+    let data = {
+      id: ticketId.getAttribute("ticket-id"),
+      state: select.value,
+      modification_date: formattedDate(),
+    };
 
-  console.log(data); 
+    console.log(data);
 
-  let url = `/ticket/update_state`;
+    let url = `/ticket/update_state`;
 
-  fetch(url, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then(
-      (resp) => resp.text(),
-      (e) => {
-        console.log("Error", e);
-      }
-    )
-    .then(() => location.reload());
-});
-
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(
+        (resp) => resp.text(),
+        (e) => {
+          console.log("Error", e);
+        }
+      )
+      .then(() => location.reload());
+  });
+}
 let sendTicketButton = document.querySelector("#button-send-ticket");
 let formSendTicket = document.querySelector("#form-send-ticket");
 
 /* FIXME: CONSOLE ERROR IN TICKET DETAILS ? */
 
-formSendTicket.addEventListener("submit", (e) => {
-  e.preventDefault();
+if (formSendTicket) {
+  formSendTicket.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  let data = {
-    user: document.querySelector("#user").value,
-    type: document.querySelector("#type").value,
-    priority: document.querySelector("#priority").value,
-    subject: document.querySelector("#subject").value,
-    ticket_text: document.querySelector("#ticket_text").value,
-    creation_date: formattedDate(),
-  };
+    let data = {
+      user: document.querySelector("#user").value,
+      type: document.querySelector("#type").value,
+      priority: document.querySelector("#priority").value,
+      subject: document.querySelector("#subject").value,
+      ticket_text: document.querySelector("#ticket_text").value,
+      creation_date: formattedDate(),
+    };
 
-  let url = "/ticket/exec_send_ticket";
+    let url = "/ticket/exec_send_ticket";
 
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(
-      (resp) => resp.text(),
-      (e) => {
-        console.log("Error", e);
-      }
-    )
-    .then(() => (window.location = `/user/profile/${data.user}`));
-});
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(
+        (resp) => resp.text(),
+        (e) => {
+          console.log("Error", e);
+        }
+      )
+      .then(() => (window.location = `/user/profile/${data.user}`));
+  });
+}

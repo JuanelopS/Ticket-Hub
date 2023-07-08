@@ -21,8 +21,16 @@ class PageController {
     }
 
     public function _404(){
+        http_response_code(404);
         require_once HEADER;
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/views/pages/404.php';
+        require_once 404;
+        require_once FOOTER;
+    }
+
+    public function _403(){
+        http_response_code(403);
+        require_once HEADER;
+        require_once 403;
         require_once FOOTER;
     }
 }
