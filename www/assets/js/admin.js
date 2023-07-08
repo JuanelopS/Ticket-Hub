@@ -20,68 +20,106 @@ async function getTicketList(url) {
   return data;
 }
 
+/* TICKET LIST STRUCTURE */
+
+function ticketListStructure(ticket) {
+  const ticketRow = document.createElement("tr");
+  ticketRow.classList.add("ticket-row", "clickable-row");
+  ticketRow.setAttribute("data-href", `/ticket/details/${ticket.id}`);
+
+  const ticketId = document.createElement("td");
+  ticketId.classList.add("ticket-id");
+  ticketId.textContent = `${ticket.id}`;
+  ticketRow.appendChild(ticketId);
+
+  const ticketPriority = document.createElement("td");
+  ticketPriority.classList.add("ticket-priority");
+  ticketPriority.textContent = `${ticket.priority}`;
+  ticketRow.appendChild(ticketPriority);
+
+  const ticketType = document.createElement("td");
+  ticketType.classList.add("ticket-type");
+  ticketType.textContent = `${ticket.type}`;
+  ticketRow.appendChild(ticketType);
+
+  const ticketUser = document.createElement("td");
+  ticketUser.classList.add("ticket-user");
+  ticketUser.textContent = `${ticket.user}`;
+  ticketRow.appendChild(ticketUser);
+
+  const ticketSubject = document.createElement("td");
+  ticketSubject.classList.add("ticket-subject");
+  ticketSubject.textContent = `${ticket.subject}`;
+  ticketRow.appendChild(ticketSubject);
+
+  const ticketCreation = document.createElement("td");
+  ticketCreation.classList.add("ticket-creation");
+  ticketCreation.textContent = formattedDate(ticket.creation_date);
+  ticketRow.appendChild(ticketCreation);
+
+  const ticketModification = document.createElement("td");
+  ticketModification.classList.add("ticket-modification");
+  ticketModification.textContent = formattedDate(ticket.modification_date);
+  ticketRow.appendChild(ticketModification);
+
+  const ticketState = document.createElement("td");
+  ticketState.classList.add("ticket-state");
+  ticketState.textContent = `${ticket.state}`;
+  ticketRow.appendChild(ticketState);
+
+  if (ticketList) {
+    ticketList.appendChild(ticketRow);
+  }
+}
+
 /* CREATE TICKET LIST */
 
-function createTicketList(url) {
+function createTicketList(url, state = "all") {
   getTicketList(url).then((tickets) => {
     const ticketList = document.querySelector(".ticket-list");
 
-    // console.log(tickets.length);
-
-    tickets.map((ticket) => {
-      const ticketRow = document.createElement("tr");
-      ticketRow.classList.add("ticket-row", "clickable-row");
-      ticketRow.setAttribute("data-href", `/ticket/details/${ticket.id}`);
-
-      const ticketId = document.createElement("td");
-      ticketId.classList.add("ticket-id");
-      ticketId.textContent = `${ticket.id}`;
-      ticketRow.appendChild(ticketId);
-
-      const ticketPriority = document.createElement("td");
-      ticketPriority.classList.add("ticket-priority");
-      ticketPriority.textContent = `${ticket.priority}`;
-      ticketRow.appendChild(ticketPriority);
-
-      const ticketType = document.createElement("td");
-      ticketType.classList.add("ticket-type");
-      ticketType.textContent = `${ticket.type}`;
-      ticketRow.appendChild(ticketType);
-
-      const ticketUser = document.createElement("td");
-      ticketUser.classList.add("ticket-user");
-      ticketUser.textContent = `${ticket.user}`;
-      ticketRow.appendChild(ticketUser);
-
-      const ticketSubject = document.createElement("td");
-      ticketSubject.classList.add("ticket-subject");
-      ticketSubject.textContent = `${ticket.subject}`;
-      ticketRow.appendChild(ticketSubject);
-
-      const ticketCreation = document.createElement("td");
-      ticketCreation.classList.add("ticket-creation");
-      ticketCreation.textContent = formattedDate(ticket.creation_date);
-      ticketRow.appendChild(ticketCreation);
-
-      const ticketModification = document.createElement("td");
-      ticketModification.classList.add("ticket-modification");
-      ticketModification.textContent = formattedDate(ticket.modification_date);
-      ticketRow.appendChild(ticketModification);
-
-      const ticketState = document.createElement("td");
-      ticketState.classList.add("ticket-state");
-      ticketState.textContent = `${ticket.state}`;
-      ticketRow.appendChild(ticketState);
-
-      if (ticketList) {
-        ticketList.appendChild(ticketRow);
-      }
-    });
-
+    if (state == "pending") {
+      tickets
+        .filter((ticket) => ticket.state == "wip" || ticket.state == "todo")
+        .map((ticket) => {
+          ticketListStructure(ticket);
+        });
+    } else if (state == "done") {
+      tickets
+        .filter((ticket) => ticket.state == "done")
+        .map((ticket) => {
+          ticketListStructure(ticket);
+        });
+    } else {
+      tickets.map((ticket) => {
+        ticketListStructure(ticket);
+      });
+    }
     priorityBadges();
     clickableRow();
   });
 }
+
+/* ALL/PENDING/FINISHED TICKETS */
+
+let allTickets = document.querySelector(".all-tickets");
+let pendingTickets = document.querySelector(".pending-tickets");
+let finishedTickets = document.querySelector(".finished-tickets");
+
+allTickets.addEventListener("click", () => {
+  ticketList.innerHTML = "";
+  createTicketList(`/ticket/ticket_list_json`);
+});
+
+pendingTickets.addEventListener("click", () => {
+  ticketList.innerHTML = "";
+  createTicketList(`/ticket/ticket_list_json`, "pending");
+});
+
+finishedTickets.addEventListener("click", () => {
+  ticketList.innerHTML = "";
+  createTicketList(`/ticket/ticket_list_json`, "done");
+});
 
 /* ACCESS TO TICKET DETAILS CLICKING ROW */
 
@@ -118,7 +156,6 @@ function priorityBadges() {
     }
   });
 }
-
 
 /* BUTTONS EDIT / DELET FROM USER LIST */
 
@@ -161,6 +198,22 @@ btnUpdate.forEach((element) => {
   });
 });
 
+/* TODO: MIX TABLES.JS && ADMIN.JS */
 
+let ticketList = document.querySelector(".ticket-list");
+
+let dataId = ticketList.getAttribute("data-id");
+let userId = ticketList.getAttribute("user-id");
 
 createTicketList(`/ticket/ticket_list_json`);
+
+/* ORDER TICKET LIST */
+
+let idColumn = document.querySelector("#id-column");
+let idPriority = document.querySelector("#priority-column");
+let idType = document.querySelector("#type-column");
+let idUser = document.querySelector("#user-column");
+let idSubject = document.querySelector("#subject-column");
+let idCreation = document.querySelector("#creation-column");
+let idModification = document.querySelector("#modification-column");
+let idState = document.querySelector("#state-column");

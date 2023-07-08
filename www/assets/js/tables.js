@@ -119,9 +119,10 @@ function priorityBadges() {
   });
 }
 
-let profile = document.querySelector(".profile");
+let ticketList = document.querySelector(".ticket-list");
 
-let userId = profile.getAttribute("data-id");
+let userId = ticketList.getAttribute("user-id");
+let dataId = ticketList.getAttribute("data-id");
 
 createTicketList(`/ticket/ticket_list_json_user/${userId}`);
 

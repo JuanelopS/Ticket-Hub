@@ -39,7 +39,7 @@
     <script src='../../assets/js/tables.js'></script>
 <?php endif; ?>
 <?php if (isset($admin_js)) : ?>
-    <script src='../../assets/js/admin.js'></script>
+<script src='../../assets/js/admin.js'></script>
 <?php endif; ?>
 <?php if (isset($ticket_js)) : ?>
     <script src='../../assets/js/tickets.js'></script>
