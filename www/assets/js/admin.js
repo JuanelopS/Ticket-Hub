@@ -74,26 +74,23 @@ function ticketListStructure(ticket) {
 
 /* CREATE TICKET LIST */
 
-function createTicketList(url, state = "all") {
+function createTicketList(url, state = "pending") {
   getTicketList(url).then((tickets) => {
     const ticketList = document.querySelector(".ticket-list");
 
-    if (state == "pending") {
-      tickets
-        .filter((ticket) => ticket.state == "wip" || ticket.state == "todo")
-        .map((ticket) => {
-          ticketListStructure(ticket);
-        });
-    } else if (state == "done") {
-      tickets
-        .filter((ticket) => ticket.state == "done")
-        .map((ticket) => {
-          ticketListStructure(ticket);
-        });
-    } else {
-      tickets.map((ticket) => {
-        ticketListStructure(ticket);
-      });
+    switch (state) {
+      case "pending":
+        tickets
+          .filter((ticket) => ticket.state != "done")
+          .map((ticket) => ticketListStructure(ticket));
+        break;
+      case "done":
+        tickets
+          .filter((ticket) => ticket.state == "done")
+          .map((ticket) => ticketListStructure(ticket));
+        break;
+      default:
+        tickets.map((ticket) => ticketListStructure(ticket));
     }
     priorityBadges();
     clickableRow();
@@ -108,7 +105,7 @@ let finishedTickets = document.querySelector(".finished-tickets");
 
 allTickets.addEventListener("click", () => {
   ticketList.innerHTML = "";
-  createTicketList(`/ticket/ticket_list_json`);
+  createTicketList(`/ticket/ticket_list_json`, "all");
 });
 
 pendingTickets.addEventListener("click", () => {
