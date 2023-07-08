@@ -39,9 +39,10 @@
                         if (isset($_SESSION) && array_key_exists('name', $_SESSION)) {
 
                             echo "
-                                        <i class='btn_delete feather-32' data-feather='log-out'>
-                                            <a href='/login/logout'>Logout</a>
-                                        </i>
+                                        <a href='/login/logout'>
+                                            <i class='feather-32' data-feather='log-out'>
+                                            </i>
+                                        </a>
                                      ";
                         } else {
                             echo
